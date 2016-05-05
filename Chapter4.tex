@@ -11,7 +11,7 @@ MyApp represents a tool which will help companies to find influential bloggers a
 
 For a better development of the project a well defined time schedule is needed. The most suitable approach for MyApp application is agile project management, because it focuses on continuous improvement. It consists of several iterations, each interation has 5 steps: planning, research, development, testing and deployment.
 
-\subsection{Objective determination}
+\subsubsection{Objective determination}
 
 During the first step of agile project management -- planning -- a set of objectives are established in order to determine what the project is supposed to accomplish when ended. Without a well defined objectives it is impossible to evaluate the results and to plan the activities for achieving them. This is the reason why objectives should be SMART. 
 
@@ -33,7 +33,7 @@ The key objectives that should be meet in order to achieve the goal are:
 
 \end{itemize}
 
-\subsection{Time schedule establishment}
+\subsubsection{Time schedule establishment}
 
 Project scheduling consists of three main parts: what activity needs to be performed, the number of days in which it should be performed and which people are responsible for it. The time schedule is divided according to specified agile project management steps. Thus, for planning and researching phases there is not a strict ammount of time and a well determined splitting, because the requirements may change and the process of analysing should be repeated. The same thing can not be assumed for development step, where the process is splited up in smaller tasks with a defined period of days. To be able to compute the total duration of the project the formula \eqref{eq:duration} is used.
 
@@ -47,7 +47,8 @@ where $D_T$ is the duration, $D_F$ -- the finish date, $D_S$ -- the start date a
 \begin{table}[!ht]
 \begin{center}
 \caption{Time schedule}
-\begin{tabular}{| c | >{\centering\arraybackslash}p{5cm}  | >{\centering\arraybackslash}p{5cm} | c |}
+\renewcommand{\arraystretch}{2}
+\begin{tabular}{| c | >{\centering\arraybackslash}p{7.5cm}  | >{\centering\arraybackslash}p{5cm} | c |}
 \hline
 \textbf{Nr} & \textbf{Activity Name} & \textbf{Duration (days)} & \textbf{People involved}  \\
 \hline
@@ -89,14 +90,14 @@ Table \ref{table:schedule} describes in the main activities during first iterati
 
 In this section the project is evaluated from an economic point of view, which implies a measure of its net benefits in monetary terms (MDL (Moldavian lei) currency) by using real or estimated market prices. During analysis all expenditures incurred under the project like: tangible and intangible assets, direct and salary expenses,  and revenues resulting from it are taken into acount.
 
-\subsection{Tangible and intangible asset expenses}
+\subsubsection{Tangible and intangible asset expenses}
 
 In Table \ref{table:tangible_assets} are listed tangible assets and their expenses. The term tangible asset means an asset that has a physical form, such as machinery.
 
 \begin{table}[!hb]
 \begin{center}
 \caption{Tangible asset expenses}
-\renewcommand{\arraystretch}{1}
+\renewcommand{\arraystretch}{2}
 \begin{tabular}{| >{\centering\arraybackslash}p{1.7cm}  | >{\centering\arraybackslash}p{5cm} | >{\centering\arraybackslash}p{2.7cm} | >{\centering\arraybackslash}p{2cm} | c | >{\centering\arraybackslash}p{5em}|}
 \hline
 \textbf{Material} & \textbf{Specification} & \textbf{Measurement unit} & \textbf{Price per unit (MDL)} & \textbf{Quantity} & \textbf{Sum (MDL)}\\
@@ -123,9 +124,7 @@ The budget for the required intangible assets, i.e., nonphysical assets, such as
 \hline
 License & Enterprise Architect Desktop Edition License & Unit & 1900 & 3 & \multicolumn{1}{r|}{5700} \\
 \hline
-License & RubyMine Commercial License & Unit & 2800 & 3 & \multicolumn{1}{r|}{8400}\\
-\hline
-\multicolumn{5}{|r|}{Total} & \multicolumn{1}{r|}{14100}\\
+\multicolumn{5}{|r|}{Total} & \multicolumn{1}{r|}{5700}\\
 \hline
 \end{tabular}
 \label{table:intangible_assets}
@@ -133,27 +132,39 @@ License & RubyMine Commercial License & Unit & 2800 & 3 & \multicolumn{1}{r|}{84
 \end{center}
 \end{table}
 
-Direct expenses are presented in Table \ref{table:direct_expenses}.
+Direct expenses are presented in Table \ref{table:direct_expenses}. It includes purchase of raw materials used during planing, analysing and meetings. These expenses are indispensable in every project at any stage.
 
+So the total amount of direct expenses in MDL is:
 
+\begin{equation}
+ T_e = 12000 + 5700 + 1017 = 18717
+\end{equation}
 
 \begin{table}[!hb]
 \begin{center}
 \caption{Direct expenses}
 \renewcommand{\arraystretch}{2}
-\begin{tabular}{| >{\centering\arraybackslash}p{5em} | >{\centering\arraybackslash}p{7em} | >{\centering\arraybackslash}p{7em} | >{\centering\arraybackslash}p{5em} | >{\centering\arraybackslash}p{5em} | r |}
+\begin{tabular}{| >{\centering\arraybackslash}p{7.5em} | >{\centering\arraybackslash}p{8em} | >{\centering\arraybackslash}p{7em} | >{\centering\arraybackslash}p{5em} | >{\centering\arraybackslash}p{5em} | r |}
 \hline
 \textbf{Material} & \textbf{Specification} & \textbf{Measurement unit} & \textbf{Price per unit (MDL)} & \textbf{Quantity} & \multicolumn{1}{>{\centering\arraybackslash}p{5em}|}{\textbf{Sum (MDL)}}\\
 \hline
 Whiteboard & Universal Dry Erase Board & Unit & 500 & 1 & 500 \\
 \hline
-Paper & A4 & 500 sheets & 60 & 2 & 120 \\
+Paper & A4 & 250 sheets & 60 & 1 & 60 \\
 \hline
-Marker & Whiteboard marker & Unit & 15 & 10 & 150 \\
+Marker & Whiteboard marker & Unit & 15 & 5 & 75 \\
 \hline
-Pen & Blue pen & Unit & 5 & 20 & 100 \\
+Eraser & Whiteboard eraser & Unit & 60 & 2 & 120 \\
 \hline
-\multicolumn{5}{|r|}{Total} & 870 \\
+Pen & Blue pen & Unit & 5 & 10 & 50 \\
+\hline
+Flipchart paper & A1 & 80sheets & 75 & 2 & 150 \\
+\hline
+Tape & Paper tape & Unit & 6 & 2 & 12 \\
+\hline
+Marker & Permanent marker & Unit & 10 & 5 & 50 \\
+\hline
+\multicolumn{5}{|r|}{Total} & 1017 \\
 \hline
 \end{tabular}
 \label{table:direct_expenses}
@@ -161,14 +172,75 @@ Pen & Blue pen & Unit & 5 & 20 & 100 \\
 \end{center}
 \end{table}
 
+\subsubsection{Salary expenses}
 
+This section includes the budget which is allocated for employee remuneration. As specified above on the project will work 4 people and according to their position a different amount of money will be paid per day, as shown in Table {table:salaries}.
 
+\begin{table}[!ht]
+\begin{center}
+\caption{Salary expenses}
+\renewcommand{\arraystretch}{2}
+\begin{tabular}{| >{\centering\arraybackslash}p{8em} | >{\centering\arraybackslash}p{8em} | >{\centering\arraybackslash}p{8em} | r |}
+\hline
+\textbf{Employee} & \textbf{Work fund (days)} & \textbf{Salary per day (MDL)} & \multicolumn{1}{>{\centering\arraybackslash}p{5em}|}{\textbf{Salary fund (MDL)}}\\
+\hline
+Project Manager & 120 & 350 & 42000 \\
+\hline 
+System Architect & 90 & 400 & 36000\\
+\hline
+Sales Manager & 60 & 250 & 15000\\
+\hline
+Developer & 120 & 330 & 39600\\
+\hline
+\multicolumn{3}{|r|}{Total} & 132600\\
+\hline
+\end{tabular}
+\label{table:salaries}
+\vspace{-2.5em}
+\end{center}
+\end{table}
 
+Since, the project involves employees it is necessary to compute how much should be paid to medical insurance, social services fund and the total work expenses.
 
+The medical insurance fund is calculated as:
 
+\begin{equation}
+\begin{split}
+ MI &= F_{re} \cdot T_{mi}\\ 
+    &= 132600 \cdot 0.035\\ 
+    &= 4641,
+ \end{split}
+\end{equation}
 
+\noindent
+where $T_{mi}$ is the mandatory medical insurance tax and this year it is $3.5\%$. 
 
+The social fund for this year is 23\%, thus the salary expenses are computed as follows:
 
+\begin{equation}
+\begin{split}
+ FS &= F_{re} \cdot T_{fs} \\
+    &= 132600 \cdot 0.23 \\
+    &= 30498,
+\end{split}
+\end{equation}
+\noindent
+where $FS$ is the salary expense, $F_{re}$ is the salary expense fund and $T_{fs}$ is the social service tax.
+
+Having all the calculations done for social service tax and medical insurance tax, it is possible to found out total work expense using the relation \eqref{eq:total_work_expense}
+
+\begin{equation}\label{eq:total_work_expense}
+\begin{split}
+ WEF &= F_{re} + FS + MI\\
+     &= 132600 + 30498 + 4641\\
+     &= 167739,
+\end{split}
+\end{equation}
+
+\noindent
+where $WEF$ is the work expense fund, FS -- the social fund and MI -- the medical insurance fund.
+
+\subsection{Individual person salary}
 
 
 
