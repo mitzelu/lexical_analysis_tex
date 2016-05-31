@@ -137,7 +137,7 @@ Direct expenses are presented in Table \ref{table:direct_expenses}. It includes 
 So the total amount of direct expenses in MDL is:
 
 \begin{equation}
- T_e = 12000 + 5700 + 1017 = 18717
+ T_e = 12000 + 5700 = 17700
 \end{equation}
 
 \begin{table}[!hb]
@@ -323,9 +323,9 @@ Transport & Public bus & Trip & 3.00 & 150 & 450\\
 \hline
 Phone & Moldtelecom & Pack & 30.00 & 3 & 90\\
 \hline
-Electricity & Union Fenosa & KWh & 1.58 & 500 & 790\\
+Electricity & Union Fenosa & KWh & 2.16 & 500 & 1080\\
 \hline
-\multicolumn{5}{|r|}{Total} & 1930 \\
+\multicolumn{5}{|r|}{Total} & 2220 \\
 \hline
 \end{tabular}
 \label{table:indirect_expenses}
@@ -341,7 +341,7 @@ The depreciation expense is calculated using the straight line depreciation meth
 
 First step in computing the depreciation is to calculate the total asstes value, using relation \eqref{eq:tav}. For this are summed up the tangible and intangible asstes and then the salvage costs has to be substracted. 
 
-\begin{equation}\label{tav}
+\begin{equation}\label{eq:tav}
  \begin{split}
   TAV &= \sum_{} (AC - SV) \\
         &= (12000 - 1000) + (5700 - 1000) \\
@@ -387,17 +387,15 @@ Product cost refers to the costs used to create a product. These costs inlude al
 \hline
 \textbf{Expense type} & \multicolumn{1}{>{\centering\arraybackslash}p{6em}|}{\textbf{Sum (MDL)}} & \multicolumn{1}{>{\centering\arraybackslash}p{6em}|}{\textbf{Percentage (\%)}}\\
 \hline
-Direct expenses & 18717 & 11.2 \\
+Direct expenses & 1017 & 0.75 \\
 \hline
-Indirect expenses & 1930 & 1.2 \\
+Indirect expenses & 2220 & 1.61 \\
 \hline
-Tangible asset expenses & 12000 & 7.2\\
+Salary expenses & 132600 & 96.3 \\
 \hline
-Salary expenses & 132600 & 79.4 \\
+Asset wear expenses & 1726.7 & 1.25 \\
 \hline
-Asset wear expenses & 1726.7 & 1 \\
-\hline
-\textbf{Total product cost} & \textbf{166973.7} & \textbf{100}\\
+\textbf{Total product cost} & \textbf{137563.7} & \textbf{100}\\
 \hline
 \end{tabular}
 \label{table:product_cost}
@@ -409,13 +407,13 @@ Asset wear expenses & 1726.7 & 1 \\
 
 Now, when all the expenses are calculated it is necessary to understand and implement and effective selling strategie. First step in this sense is to understand target customers. The key customers of MyApp are brand companies. To make them know about the product a good advertising is crucial. That implies additional costs and finding an investor will be the best solution in this case.  
 
-At the moment the tool does not have a fixed price, thus for determining the aproximated price the 20 \% on top of the production cost principle is used. 
+At the moment the tool does not have a fixed price, thus for determining the aproximated price the 25 \% on top of the production cost principle is used. 
 
 \begin{equation}
  \begin{split}
   GP &= C_{total} / N_{cs} + P_{p}\\
-              &= 166973.7/100 + 20 \% \\
-              &= 2004,
+              &= 137563.7/100 + 25 \% \\
+              &= 1719.54,
  \end{split}
 \end{equation}
 
@@ -424,11 +422,11 @@ where \textit{GP} is the gross price, $C_{total}$ the total product cost, $N_{cs
 
 The price of the end product has sales tax (VAT) included, so it to the computed gross price is added the sales tax, which represents 20 \%. Using relation \ref{eq:sale_price} the sale price including VAT is computed
 
-\begin{equation}\label{sale_price}
+\begin{equation}\label{eq:sale_price}
  \begin{split}
   P_{sale} &= GP / TX{sales}\\
-           &= 2004 + 20 \% \\
-           &= 2404,
+           &= 1719.54 + 20 \% \\
+           &= 2063.5,
  \end{split}
 \end{equation}
 
@@ -442,8 +440,8 @@ Net income is a distinct accounting concept from profit. Net income is calculate
 \begin{equation}
  \begin{split}
   I_{net} &= GP \cdot N_{cs}\\
-          &= 2004  \cdot 100 \\
-          &= 200400,
+          &= 1719.54  \cdot 100 \\
+          &= 171954,
  \end{split}
 \end{equation}
 
@@ -455,11 +453,11 @@ Gross profit is a company's total revenue (equivalent to total sales) minus the 
 \begin{equation}
  \begin{split}
   GPr &= I_{net} - C_{production}\\
-      &= 200400 - 166973\\
-      &= 33427\\
+      &= 171954 - 137563.7\\
+      &= 34390.3 \\
   NPr &= GPr - 12\% \\
-      &= 33427 - 12\% \\
-      &= 29415.76,
+      &= 34390.3 - 12\% \\
+      &= 30263.46,
  \end{split}
 \end{equation}
 
@@ -471,17 +469,17 @@ Profitability indicators are a class of financial metrics that are used to asses
 \begin{equation}
  \begin{split}
   C_{profit} &= GPr / C_{production} \cdot 100\%\\
-             &= 33427 / 166973 \cdot 100\% \\
-             &= 20.02 \%\\
+             &= 34390.3 / 137563.7 \cdot 100\% \\
+             &= 24.99 \%\\
   S_{profit} &= GPr / I_{net} \cdot 100\% \\
-             &= 33427 / 200400 \cdot 100\% \\
-             &= 16.68 \%.
+             &= 34390.3 / 171954 \cdot 100\% \\
+             &= 19.99 \%.
  \end{split}
 \end{equation}
 
 \subsection{Marketing Plan}
 
-The term of marketing means the management process through which goods and services move from concept to the customer. American Marketing Association defined it as ``the activity, set of institutions, and processes for creating, communicating, delivering, and exchanging offerings that have value for customers, clients, partners, and society at large.``\cite{marketing} 
+The term of marketing means the management process through which goods and services move from concept to the customer. American Marketing Association defined it as ``the activity, set of institutions, and processes for creating, communicating, delivering, and exchanging offerings that have value for customers, clients, partners, and society at large." \cite{marketing} 
 
 The traditional way of viewing the components of marketing is using the four Ps:
 
@@ -511,21 +509,49 @@ It includes several key componnets:
 
 \item[--] \textbf{Market strategy:} describe marketing and promotion strategies that will be used, like: direct marketin (sales letters, flyers), web site, advertising (print media), direct/personal selling.
 
-\item[--] \textbf{Budget:} 
+\item[--] \textbf{Budget:} a month-by-moth schedule of what is plan to be spend on marketing.
 
-
+\item[--] \textbf{Matrics:} establish quantifiable marketing goals. This means goals that you can turn into numbers.
 
 \end{enumerate}
 
+Another aspect that should be taken into consideration is the product life cycle. A new product progresses theough a sequence of stages from introducion to growth, maturity and decline, as shown in Figure \ref{product-stage}. It is important to know the caracterics of each stage in order to take corresponding actions regarding the situation.
+
+\begin{figure}[!ht]
+\centering
+\includegraphics[width=10cm]{product-life-cycle}
+\caption{Product Life Cycle Diagram\cite{prodcutFigure}}\label{product-stage}
+\end{figure}
 
 
+\begin{itemize}
 
+\item[--] \textbf{Introduction Stage.} The most expensive stage. The size of the market for the product is small, thus sales are low. It is need to build product awareness and to develop a market for the product.
 
+\item[--] \textbf{Growth Stage.} The stage is characterized by a strong growth in sales and profits. There is neccessary to build brand preference and increase market share.
 
+\item[--] \textbf{Maturiy Stage.} Strong growth in sales. The objective at this point is to defend and maintain the market share while maximizing profit. 
 
+\item[--] \textbf{Decline Stage.} The market for the product start to shrink and sales to decline. At this stage the company should decide what to do further: 
 
+\begin{itemize}
 
+\item Maintain the product (adding new features and finding new uses).
 
+\item Harvest the product (reduce costs and niche segment).
+
+\item Discontinue the product (liquidate or sell it to another firm).\cite{stages}
+
+\end{itemize}
+\end{itemize}
+
+\subsection{Economic conclusions}
+
+In this chapter MyApp project was analyzed in economic terms. The analysis was done to assess the opportunity of the project by considering the benefits compared to the costs. Besides financial indicators, other additional aspects as market influences, social and envrironmental costs were considered. 
+
+The product at introduction stage is very hard to promote. It is necessary to set up a well defined set of objectives and to develope a detailed marketing plan. The company should investigate all threats and have a plan how to exceed them. 
+
+The analysis is worth to understand if the product will be successful and if it's worth investing money in it.
 
 
 
