@@ -1,0 +1,73 @@
+\section{Implementation Part}
+\phantomsection
+In the previous chapters the concepts and architecture of Finduber project were discussed. What follows now is the description of the implementation part. It will be analysed and described every step of the implementation process, together with the used technologies and code snippets. 
+
+The whole part of the project is written in Python. Thus, frameworks and libraries, as described in Figure \ref{component_uml}, are Python related.
+
+As the thesis is based on lexical analysis, the main two parts of its are pre-run console applications.
+
+\subsection{Category Database}
+Creating a database that will hold category tree for a pre-defined set of industries is the first part in the project cycle. As primary industries are choosen:
+
+\begin{enumerate}
+\item[--] beauty
+\item[--] fashion
+\item[--] sports
+\item[--] games
+\item[--] food
+\end{enumerate}
+
+The main two ideas were to use the hypernim/hyponim classification or wikipedia category tree. After some research it turns out that first approach is not suitable for my purpose, because defined categories has abstract words, like: beauty, fashion. Thus, the hyponim/hypernim tree of such a word will contain only abstract words like: appearance, attractiveness, handsomeness. In this way, it will never categorize term -- soap -- to industry -- beauty. 
+
+Second method is more conveinent for Finduber project. Wikepia is the biggest online dictionary and contains over 473K unuque categories and over 995K edges in the categories taxonomic tree. Bassicaly, every word can be found on it page. Moreover, every article has one or more categories to which it belongs and each category a list of subcategories. That is what we need so far. 
+
+For a better understanding here is an example of a edge of wikipedia category tree:
+
+\begin{enumerate}
+\item[--] Beauty
+\begin{enumerate}
+\item[--] Skin care
+\begin{enumerate}
+\item[--] Sun tanning
+\end{enumerate}
+\end{enumerate}
+\end{enumerate}
+
+Now, if the given word has one of these categories it is classified as of Beauty type. 
+
+For storing the category tree Finduber project uses Mongo database, because it has a simple structure of document hierarchy. This feature of nested documents will simplfy the search process. 
+
+To retreive desired information from wikipedia page it is need first to extract the raw page and then to connect to Wikipedia API. In Python the library beautifulSoup is used to extract data out of HTML pages. However, to be able to extract only desired information out of a full text page it is need to examine the structure of raw HTML. What kind of tags, attributes and references are used.
+
+Wikipedia pages has a simple HTML structure. The data about categories is enclosed in 'a' and 'div' tags of class 'mw-normal-catlinks'. Further, the library is doing all the job. Listing \ref{wiki_extractor} shows the full method described.
+
+\lstinputlisting [language=Python, caption={Wikipedia Extractor}, label=wiki_extractor]{../src/wikipedia_extractor.py}
+
+The method returns a list of categories. The next step is to define method that will use Wikipedi API to get the subcategories as deeper as required. MediaWiki action API is the web service that provides convenient access to wiki features and data over HTTP. For this is need to request a particular 'action' in the 'action' parameter. In Finduber project the action is set as query. Because we are looking for categories, other query parameters that need to be set are: llist -- categorymembers (list of pages that belong to given category); cmtitle -- the given category; cmtype -- type of category members to include.
+
+The listing \ref{wiki_query} contains all logic for connection to MediaWiki. 
+
+\lstinputlisting [language=Python, caption={Wikipedia Query}, label=wiki_query]{../src/wiki_query.py}
+
+It takes as argument query\_params, that are specified in next method from listing \ref{wiki_parser}
+
+\lstinputlisting [language=Python, caption={Wikipedia Parser}, label=wiki_parser]{../src/category_members.py}
+
+Because the wikipedia HTML page uses to specify categories as 'Category: name' it is need first to append the string 'Category' to the given word. Category tree in wikipedia is in circular dependence. Thus, at some point it can get that word Biology can be part of Chicago Stags coaches category. To avoid this types of situations a maximum depth is set.
+
+Final step is to store data in the MongoDB model. At this point the database of categories is set up. 
+
+\subsection{Database Optimization using Lexical Analysis}
+
+This part of the project is the main task that should be implemented in order to get the desired results of Finduber project. It represents also a console application that is meant to group database records in pre-defined categories.
+
+
+
+
+
+
+
+
+
+
+

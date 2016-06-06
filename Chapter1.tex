@@ -5,10 +5,93 @@
 
 Nowdays social media become an important marketing tool. Beside a big network where everyone can share information and express their thougts, social media channels represent a good place for advertising different types of products and services. Moreover, people started using social media as a source of helping each others by publishing different advices about how to dress up, how to apply make up and what type of products are good. That is why video blogs that are posting on Youtube are very popular. According to Reasearch Now, 84 \% of people have purchased products based on their descriptions in blogs.\cite{cyber} The percentage is very high, therefore companies are very interested in influential bloggers who can advise their products. 
 
-The problem acquires when stakeholders start researching the influential bloggers. 
+The problem acquires when stakeholders start researching the influential bloggers. Since the number of youtube users is huge and it is in permanent growth the researching task is suppose to take a long time and not always to give desired results. Findblogger is meant to resolve this problem using the lexical analysis process. 
+
+\subsection{Project Specification}
+
+Finduber is a tool used to help stakeholders in finding influential bloggers according to their needs and requirements. Compared to other platforms that provide a general search mechanism among social media users, Finduber is focused on well defined search parameters. More differences and benefits of Finduber project are pointed out in the futher analysed example. 
+
+Let's suppose that a company needs to promote its new product -- a special kind of \textit{soap}. Bassically, this means that the search should be performed based on keyword \textit{soap.} An existing tool will return a list of Youtube users that have in their username the keyword, that is far not the desired result. Findblogger project assign first the keyword to an existing category and after that processes to searching. In this way, the user has the result that he expects.
+
+The core of the serch engine is based on machine learning techniques such as lexical analysis, cluster analysis and natural language processing.
+
+The project consists of two main parts: 
+
+\begin{enumerate}
+
+\item Youtube database optimization.
+
+\item Web interface 
+
+\end{enumerate}
+
+\textbf{Youtube database optimization} is a crucial step of the Finduber project. It uses lexical analysis and natural language processing to optimize the database for a better result.
+
+\begin{figure}[!ht]
+\centering
+\includegraphics[width=15cm]{moch}
+\caption{Page Mockup}
+\end{figure}
 
 
+\subsection{Lexical Analysis and Text Mining}
 
+Lexical analysis is defined as process of taking an input string of characters and producing a sequence of symbols called token, that may be handled more easily by a parser. Finduber project works with database records that consists of chunks of text. In general, big chunks of text does not represent a big value. The problem is that the English spken language is vast and complex. For example, the same word might have different meanings in different circumstances. It this case the solution is to construct using text mining tools. 
+
+Text mining is the process of extracting the useful information from the textual data. It is a research area that tries to discover knowledge from unstructured texts. Comapred to data mining tools, that are designed to handle structured data, text mining works with unstructured or semi-structured data sets such as emails, HTML files and full documents.\cite{survey} In Finduber project the unstructured data refers to raw data extracted from social media content,such as chanel description. Text mining together with lexical analysis tries to solve the issues that occur in the area of data mining, information extraction, machine learning and natural language processing. 
+
+\subsubsection{Information Extraction}
+
+Information extraction is the retrieval and association of information from a large number of text-based documents. The method identifies key words and relationships within the text. It does this by looking for predefined sequence in the text. This technology is very useful when dealing with large volume of text, as the Finduber project has. Also, this activity concerns processing human language texts by means of natural language processing (NLP). 
+
+\textbf{Categorization} is another aspect of text mining and lexical analysis that is necessary for Finduber project. Categorization involves indentifying the main themes of a document by inserting the document into a pre-defined set of topics. relating the definition to the described system, the documents represents the fields from the database and the pre-defined set of topics -- the pre-defined categories. 
+
+When categorizing a document a computer program treats the document as a 'bag of words. It only counts words that appear and, from the counts, indetifies the main topics that the document covers. In case of Finduber system categorization often relies on a databse for which categories are predefined, and relationships are identified by looking for large terms, synonyms and related terms.
+
+To handle categorization task successfully a set of processes that work hand in hand with another form NLP kit should be implemented. Thus, the field of NLP is crucial for Finduber project.
+
+\begin{figure}[!ht]
+\centering
+\includegraphics[width=15cm]{textmining}
+\caption{Page Mockup}
+\end{figure}
+
+\subsubsection{Natural Language Processing}
+
+NLP is an area of application and research that explores how computers can be used to understand and manipulate natural language text. One of the main challenge of this field involves natural language understanging regarding human language input. Applications of NLP include a number of fields of studies, some of them are speech recognition, machine translation, artificial intelligence and natural language text processing and summarization. The last one is exactly what is need for Finduber project. In order to accomplish it a set of preprocessing methods should be done: 
+
+\begin{itemize}
+\item[--] Tokenization.
+\item[--] Stop words elimination.
+\item[--] Steaming.
+\item[--] Term frequency.
+\end{itemize}
+
+\textbf{Tokenization} represents the process of breaking a string into words, phrases or other meaningful elemnts that are called tokens. The list of tokens becomes input for further processing. Tipically, segmentation occurs at the word level. Often a tokenizer relies on simple heuristics. Tokens are usually separated by white spaces. 
+
+\textbf{Stop words eliminations} process is meant to clean the data for insigificant words. Stop words are a division of natural language. The main motive that stop-words should be removed is that they make the text look heavier and less important for analysts. The most common words in text documents are articles, pro-nouns and prepositions. Some example of stop words are: the, in, a, an, etc. Stop words are removed from documents to reduce the dimensinality of term space and because they are not treated as keywords in text mining applications. \cite{sufix}
+
+There are three methods that can be implemented to remove stop words. 
+
+\textbf{The classic method:} Is based on eliminating stop words obtained from pre-compiled lists.
+
+\textbf{Methods based on Zipf's Law (Z-Methods):} Additionally to the classic stop list, it uses three stop word creation methods moved by Zipf's law, including: removing most frequent words (TF-High) and removing words that occur once, i.e. singleton
+words (TF1). It also consider removing words with low inverse document frequency (IDF). This method is used mostly on document analysis, rather that text.
+
+\textbf{The Mutual Information Method (MI):} A supervised method that works by computing the mutual information between a given term and a document class (e.g., positive, negative), providing a suggestion of how much information the term can tell about a given class. Low mutual information suggests that the term has a low discrimination power and consequently it should be removed.\cite{MI}
+
+For Finduber project the first method is more suitable, because it has to remove stop words from the text not from the documents.
+
+\textbf{Steaming} is used to identify the root/stem of a word. For example, the words connect, connected, connecting, connections all can be stemmed to the word ``connec". \cite{stemming} The main goal of this method is to remove various suffixes, to reduce number of words and to have accurately matchin stems. There are two points that should be considered while using a stemmer:
+
+\begin{itemize}
+\item[--] Words that do not have the same meaning should be kept separate.
+\item[--] The morphological forms of a word that are assumed to have the same base meaning shuld be mapped to the same stem. 
+\end{itemize}
+
+Usually, stemming algorithms can be classified into three groups: truncating, statistical and mixed methods. Each method has it way of finding the stems of the word variants. After a deep analysis of all method, the first one turns out to be the most efficient for the Finduber project. 
+
+\textbf{Truncating Methods} are related to removing the sufixes or prefixes, i.e. affices of a word. One of the most basic stemmer is the Truncate (n) stemmer. It truncates a word at the nth symbol, thus it keeps n letter and removes the rest. Words shorter that n are kept as it is.
 
 
 \subsection{Big Data}
@@ -23,10 +106,9 @@ The rate of unstructured data production on social media makes it difficult to a
 
 \subsubsection{Related Technologies}
 
-One of the fundamental technologies related to big data is \textbf{Hadoop}, which forms a powerful big data systematic solution through data storage, data processing, runing applications on clusters and integration of other modules. 
+One of the fundamental technologies related to big data is \textbf{Hadoop}, that forms a powerful big data systematic solution through data storage, data processing, runing applications on clusters and integration of other modules. 
 
 It was initially developed by Doug Cutting and Mike Cafarella as an open-source web search ingine called Nutch. Its purpose was to return web search results faster by distributing data and calculations across different computers so multiple tasks could be acccomplished simultaneously. Later the project was devided - the web crawler part remained as Nutch and the distributed computing and processig part became Hadoop.\cite{sas} Today Hadoop is managed and maintained by the Apache Software Foundation (ASF) and is widely used by big Internet enterprises like Facebook, Yahoo. 
-
 
 Hadoop consists of two parts: HDFS (Hadoop Distributed File System) and MR framework (MapReduce Framework). HDFS stores data from different external sources fed into a Hadoop cluster. A HDFS cluster includes a single NameNode for managing the metadata of the file system and DataNodes for storing actual data.The MR framework consist of one JobTraker and and multiple TaskTraker nodes.
 
@@ -82,7 +164,7 @@ The main advantages of Hadoop are:
 
 \end{itemize}
 
-Having the Hadoop technology which allows to store and analyse big data, the main questions are: Which is the best way of storing the data? What methods are used for data anlysis? 
+Having the Hadoop technology that allows to store and analyse big data, the main questions are: Which is the best way of storing the data? What methods are used for data anlysis? 
 
 \subsubsection{Big Data Storage}
 
@@ -98,13 +180,36 @@ In order develop a large scale distributed storage system for  efficient data pr
 
 \end{itemize}
 
-In 2000 Eric Brewer proposed a CAP theory, which stated that in a distributed system could not have all this three factors enumerated above simultaneously. The theory was proved two years later by Seth Gibert and Nancy Lynch from MIT. According to the theory we can have a CA system, where partition tolerance is sacrificed, a CP system by ignoring availability and an AP system where consistency element is missing.
+In 2000 Eric Brewer proposed a CAP theory, that stated that in a distributed system could not have all this three factors enumerated above simultaneously. The theory was proved two years later by Seth Gibert and Nancy Lynch from MIT. According to the theory we can have a CA system, where partition tolerance is sacrificed, a CP system by ignoring availability and an AP system where consistency element is missing.
 
 \textbf{CA} systems could not handle network failures, because the partition tolerance is missing, this is why they are storage systems with a single server and could not be expanded. So, for large-scale stored systems are used CP systems and AP systems. 
 
-\textbf{CP} systems ensure partition tolerance, in such a way the system can be expanded to become a distributed one. To ensure a level of partition tolerance system maintain several copies of the same data. The copies are completely identical, thus ensuring cosistency. Because CP systems do not have the third factor, availability, to guarantee a response to every request, system will wait for a response from the partitioned node which could reuslt in a timeout error. CP systems are chosen when the amount of data is not so big. Examples of CP systems are: BigTable and Hbase.
+\textbf{CP} systems ensure partition tolerance, in such a way the system can be expanded to become a distributed one. To ensure a level of partition tolerance system maintain several copies of the same data. The copies are completely identical, thus ensuring cosistency. Because CP systems do not have the third factor, availability, to guarantee a response to every request, system will wait for a response from the partitioned node that could reuslt in a timeout error. CP systems are chosen when the amount of data is not so big. Examples of CP systems are: BigTable and Hbase.
 
-\textbf{AP} systems ensure availability and partition tolerance. The consistency factor is missing, therefore AP systems are applied to the scenarios with frequent requests but not very high requirements on accurancy. Availability is also an option when the system needs to continue to function in spite of external errors\cite{AP} for example in online Social Network Services. Two popular AP systems are Dynamo and Cassandra. 
+\textbf{AP} systems ensure availability and partition tolerance. The consistency factor is missing, therefore AP systems are applied to the scenarios with frequent req
+uests but not very high requirements on accurancy. Availability is also an option when the system needs to continue to function in spite of external errors\cite{AP} for example in online Social Network Services. Two popular AP systems are Dynamo and Cassandra. 
+
+\textbf{Database Technology}
+
+Every complex system requires a database technology to handle datasets at different scales. It is apparent that traditional relational databases cannot meet the challenges on categories and scales brought about by big data. In this context NoSQL databases are becoming more used and popular for big data storage. Compared with relational databases, NoSQL ones feature flexible models, simple API, eventual consistency and support of large volume data. There are three main NoSQL databases:
+ 
+\begin{itemize}
+\item[--] Key-value databases.
+\item[--] Column-oriented databases.
+\item[--] Document-oriented databases.
+\end{itemize} 
+
+\textbf{Key-value databases} store data corresponding to key-values. Every key is unique and customers may input queried values according to the keys. Such structure is simple and is characterized with high expandability. You can find the value data based on searching the key field, in this way the query time is much smaller than for relational databases.
+
+Key-value stores are used in massive multi-player on-line gaming to manage each player session, in managing the shopping cart transactions up to the point of payment. Example of such database are: Redis, Memcached, Voldemort, Amazon Dynamo DB.
+
+\textbf{Column-oriented databases} store data tables according to columns rather that rows. 
+
+
+
+
+
+
 
 
 
