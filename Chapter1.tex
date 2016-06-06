@@ -27,15 +27,7 @@ In order to make the project real the following plan should be executed:
 
 \end{enumerate}
 
-\textbf{Taxonomy database} aims to hold a category tree for a pre-defined set of industries. For Finduber project are choosen five industries that are more trendy among bloggers and users:
-
-\begin{enumerate}
-\item[--] Beauty
-\item[--] Fashion
-\item[--] Sports
-\item[--] Games
-\item[--] Food
-\end{enumerate}
+\textbf{Taxonomy database} aims to hold a category tree for a pre-defined set of industries. For Finduber project are choosen five industries that are more trendy among bloggers and users: Beauty, Fashion, Sports, Games, Food. 
 
 The purpose of creating this database is to assign a given word to an existing category during search engine process. A detailed explication about methods and technologies used to create the taxonomy database is given in Chapter 3. 
 
@@ -82,13 +74,15 @@ NLP is an area of application and research that explores how computers can be us
 \textbf{Stop words eliminations} process is meant to clean the data for insigificant words. Stop words are a division of natural language. The main motive that stop-words should be removed is that they make the text look heavier and less important for analysts. The most common words in text documents are articles, pro-nouns and prepositions. Some example of stop words are: the, in, a, an, etc. Stop words are removed from documents to reduce the dimensinality of term space and because they are not treated as keywords in text mining applications. \cite{sufix}
 
 There are three methods that can be implemented to remove stop words. 
+\begin{itemize}
 
-\textbf{The classic method:} Is based on eliminating stop words obtained from pre-compiled lists.
+\item[--]{The classic method:} Is based on eliminating stop words obtained from pre-compiled lists.
 
-\textbf{Methods based on Zipf's Law (Z-Methods):} Additionally to the classic stop list, it uses three stop word creation methods moved by Zipf's law, including: removing most frequent words (TF-High) and removing words that occur once, i.e. singleton words (TF1). It also consider removing words with low inverse document frequency (IDF). This method is used mostly on document analysis, rather that text.
+\item[--]{Methods based on Zipf's Law (Z-Methods):} Additionally to the classic stop list, it uses three stop word creation methods moved by Zipf's law, including: removing most frequent words (TF-High) and removing words that occur once, i.e. singleton words (TF1). It also consider removing words with low inverse document frequency (IDF). This method is used mostly on document analysis, rather that text.
 
-\textbf{The Mutual Information Method (MI):} A supervised method that works by computing the mutual information between a given term and a document class (e.g., positive, negative), providing a suggestion of how much information the term can tell about a given class. Low mutual information suggests that the term has a low discrimination power and consequently it should be removed.\cite{MI}
+\item[--]{The Mutual Information Method (MI):} A supervised method that works by computing the mutual information between a given term and a document class (e.g., positive, negative), providing a suggestion of how much information the term can tell about a given class. Low mutual information suggests that the term has a low discrimination power and consequently it should be removed.\cite{MI}
 
+\end{itemize}
 For Finduber project the first method is more suitable, because it has to remove stop words from the text not from the documents.
 
 \textbf{Steaming} is used to identify the root/stem of a word. For example, the words connect, connected, connecting, connections all can be stemmed to the word ``connec". \cite{stemming} The main goal of this method is to remove various suffixes, to reduce number of words and to have accurately matchin stems. There are two points that should be considered while using a stemmer:
@@ -112,7 +106,23 @@ For Finduber project the Lancaster stemmer algorithm is used, because it is need
 
 \textbf{Term Frequency} measures how frequently a term occurs in a sequence of text.
 
+\subsection{Wikipedia Category Tree}
+
+Wikipedia is one of the most used and visited free-sources on the Internet. Until 2004, Wikipedia Fundation did not have a dedicted system for organizing articles. The only structure was contained in the direct links between the articles without any tols to organize them further.\cite{wikicategory} Later on in June, the Wikipedia added a feature designed to this purpose -- category pages. Through the use of category pages, it became possible to assign articles to categories and to link the these categories among themselves. Using this feature it can be created a category tree for every word that exist in wikipedia dictionary. The entire structure of organization of page hierarchy is show in the Figure \ref{category-tree-wiki}. 
+
+\begin{figure}[!ht]
+\centering
+\includegraphics[width=15cm]{categorytreewiki}
+\caption{Illustration of Wikipedia’s Organization of Different Pages}\label{category-tree-wiki}
+\end{figure}
+
+These structure is quite complex, but it is the suitable approach to be implemented in order to create taxonomy databases. For Finduber project only categories will be extracte, without articles and other special pages. These additional vertices are subject for future improvement of the project. To be able to extract these information from the wikipedia web page, wikipedia API is used.
+
+\textbf{Wikipedia API} is a strong web service, that allows developers to access, search and integrate Wikipedia content into custom web applications or for information storage. This API, that works over HTTP and returns data in a variety of different formats, including XML, is freely available to the programming public and makes it possible to create all kinds of custom web applications powered by Wikipedia's huge content database. \cite{wikipediAPI} Details about how it is implemented and how to fetch data from it are described in Chapter 3.
+
 \subsection{Big Data}
+
+Finduber project deals with biga data analysis and storage. Because the data from the database with youtube users represents an unstructured data and it size is over four gigabytes. In these subsection is defined the term of big data and how it is relate to social media, are analyses technologies used for big data analysis and efficient methods of data storage. 
 
 Every day people around the world post 400 million tweets on Twitter, add 350 million photos to Facebook and view 4 billion videos on YouTube.\cite{digitalInfo} Every 60 seconds on Facebook are posted 510 comments and 293,000 statuses are updated.\cite{zephoria} This has prompted the development of new technical and methodological approache to capture, process and analyse large and complex data, called \textbf{Big Data}. 
 
@@ -122,7 +132,7 @@ Big data aprroaches to analysing social media data can increase undertanding of 
 
 The rate of unstructured data production on social media makes it difficult to analyse and store it using traditional methods. Traditional methods of management system and analytics systems are based on the relational database management system (RDBMS) and can only be applied to structured data.\cite{bdtech} Due to this problem, research community has proposed some solutions that could storage and analyse big data, these solutions and technologies are described in the next subsections.
 
-\subsubsection{Related Technologies}
+\subsubsection{Hadoop and MapReduce}
 
 One of the fundamental technologies related to big data is \textbf{Hadoop}, that forms a powerful big data systematic solution through data storage, data processing, runing applications on clusters and integration of other modules. 
 
@@ -221,21 +231,16 @@ Every complex system requires a database technology to handle datasets at differ
 
 Key-value stores are used in massive multi-player on-line gaming to manage each player session, in managing the shopping cart transactions up to the point of payment. Example of such database are: Redis, Memcached, Voldemort, Amazon Dynamo DB.
 
-\textbf{Column-oriented databases} store data tables according to columns rather that rows. 
+\textbf{Column-oriented databases} store data tables according to columns rather that rows. To realize expandability columns and rows are segmented in multiple nodes. The column-oriented databases are mainly inspired by Google's BigTable. Cassandra is another example of database from this category.
+
+\textbf{Document-oriented databases} can support more complex data forms, compared with key-values database. Moreover, is no need to conduct mode migrations, because documents do not follow strict models. The application logic is much easier to write for document-oriented databases, since it is not need to translate between objects in application and SQL queries, object model can just be turned directly into a document.
+
+Document databases have very powerful query engines and indexing features that make it easy and fast to execute many different optimized queries. \cite{mongodb-adv} Three important representatives of document stoarge systems are: MongoDB, SimpleDB and Couch DB. 
+
+As was mentioned at the beginning of the chapter, the Finduber project uses two databases. The youtube database uses PostgreSQL to store the data. For taxonomy database it is choosen the document-based model -- MongoDB. This model is the most optimal choise, because it supports documents hierarchy and this is exactly what is need for storing a category tree.
 
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-\subsubsection{Big Data Analysis}
 
