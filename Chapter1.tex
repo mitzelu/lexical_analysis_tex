@@ -3,29 +3,45 @@
 
 \subsection{Problem Definition}
 
-Nowdays social media become an important marketing tool. Beside a big network where everyone can share information and express their thougts, social media channels represent a good place for advertising different types of products and services. Moreover, people started using social media as a source of helping each others by publishing different advices about how to dress up, how to apply make up and what type of products are good. That is why video blogs that are posting on Youtube are very popular. According to Reasearch Now, 84 \% of people have purchased products based on their descriptions in blogs.\cite{cyber} The percentage is very high, therefore companies are very interested in influential bloggers who can advise their products. 
+Nowdays social media become an important marketing tool. Beside a big network where everyone can share information and express their thougts, social media channels represent a good place for advertising different types of products and services. Moreover, people started using social media as a source of helping each others by publishing different advices about how to dress up, how to apply make up and what type of products are good. That is why video blogs that are posting on Youtube are very popular. According to Research Now, 84 \% of people have purchased products based on their descriptions in blogs.\cite{cyber} The percentage is very high, therefore companies are very interested in influential bloggers who can advise their products. 
 
-The problem acquires when stakeholders start researching the influential bloggers. Since the number of youtube users is huge and it is in permanent growth the researching task is suppose to take a long time and not always to give desired results. Findblogger is meant to resolve this problem using the lexical analysis process. 
+The problem acquires when stakeholders start researching the influential bloggers. Since the number of youtube users is huge and it is in permanent growth the researching task is suppose to take a long time and not always to give desired results. Finduber is meant to resolve this problem using a search engine based on lexical analysis process. 
 
 \subsection{Project Specification}
 
 Finduber is a tool used to help stakeholders in finding influential bloggers according to their needs and requirements. Compared to other platforms that provide a general search mechanism among social media users, Finduber is focused on well defined search parameters. More differences and benefits of Finduber project are pointed out in the futher analysed example. 
 
-Let's suppose that a company needs to promote its new product -- a special kind of \textit{soap}. Bassically, this means that the search should be performed based on keyword \textit{soap.} An existing tool will return a list of Youtube users that have in their username the keyword, that is far not the desired result. Findblogger project assign first the keyword to an existing category and after that processes to searching. In this way, the user has the result that he expects.
+Let's suppose that a company needs to promote its new product -- a special kind of \textit{soap}. Basically, this means that the search should be performed based on keyword \textit{soap.} An existing tool will return a list of Youtube users that have in their username the keyword, that is far not the desired result. Finduber project assign first the keyword to an existing category and after that processes to searching. In this way, the user has the result that he expects.
 
 The core of the serch engine is based on machine learning techniques such as lexical analysis, cluster analysis and natural language processing.
 
-The project consists of two main parts: 
+In order to make the project real the following plan should be executed:
 
 \begin{enumerate}
 
-\item Youtube database optimization.
+\item[--] To create a taxonomy database. 
 
-\item Web interface 
+\item[--] To optimize database with youtube users by grouping it into pre-defined categories .
+
+\item[--] To design a simple web application that will show the research results. 
 
 \end{enumerate}
 
-\textbf{Youtube database optimization} is a crucial step of the Finduber project. It uses lexical analysis and natural language processing to optimize the database for a better result.
+\textbf{Taxonomy database} aims to hold a category tree for a pre-defined set of industries. For Finduber project are choosen five industries that are more trendy among bloggers and users:
+
+\begin{enumerate}
+\item[--] Beauty
+\item[--] Fashion
+\item[--] Sports
+\item[--] Games
+\item[--] Food
+\end{enumerate}
+
+The purpose of creating this database is to assign a given word to an exiting category during search engine process.
+
+\textbf{Youtube database optimization} is a crucial step of the Finduber project. It represents the second step of the search engine algorithm, given that the engine determined the category to which the inputted by user word belogs. The problem now is how to use the word category for further search. How it can be used to extract required information from the database with youtube users? Obviously, Youtube page does not have the defined categories that Finduber project uses. Youtube categories are: 
+
+ It uses lexical analysis and natural language processing techniques to optimize the database for a better search result. 
 
 \begin{figure}[!ht]
 \centering
@@ -50,22 +66,15 @@ When categorizing a document a computer program treats the document as a 'bag of
 
 To handle categorization task successfully a set of processes that work hand in hand with another form NLP kit should be implemented. Thus, the field of NLP is crucial for Finduber project.
 
+\subsubsection{Natural Language Processing}
+
+NLP is an area of application and research that explores how computers can be used to understand and manipulate natural language text. One of the main challenge of this field involves natural language understanging regarding human language input. Applications of NLP include a number of fields of studies, some of them are speech recognition, machine translation, artificial intelligence and natural language text processing and summarization. The last one is exactly what is need for Finduber project. In order to accomplish it a set of preprocessing methods should be done, as shown in Figure \ref{text}
+
 \begin{figure}[!ht]
 \centering
 \includegraphics[width=15cm]{textmining}
-\caption{Page Mockup}
+\caption{Natural Language Text Processing}\label{text}
 \end{figure}
-
-\subsubsection{Natural Language Processing}
-
-NLP is an area of application and research that explores how computers can be used to understand and manipulate natural language text. One of the main challenge of this field involves natural language understanging regarding human language input. Applications of NLP include a number of fields of studies, some of them are speech recognition, machine translation, artificial intelligence and natural language text processing and summarization. The last one is exactly what is need for Finduber project. In order to accomplish it a set of preprocessing methods should be done: 
-
-\begin{itemize}
-\item[--] Tokenization.
-\item[--] Stop words elimination.
-\item[--] Steaming.
-\item[--] Term frequency.
-\end{itemize}
 
 \textbf{Tokenization} represents the process of breaking a string into words, phrases or other meaningful elemnts that are called tokens. The list of tokens becomes input for further processing. Tipically, segmentation occurs at the word level. Often a tokenizer relies on simple heuristics. Tokens are usually separated by white spaces. 
 
@@ -75,8 +84,7 @@ There are three methods that can be implemented to remove stop words.
 
 \textbf{The classic method:} Is based on eliminating stop words obtained from pre-compiled lists.
 
-\textbf{Methods based on Zipf's Law (Z-Methods):} Additionally to the classic stop list, it uses three stop word creation methods moved by Zipf's law, including: removing most frequent words (TF-High) and removing words that occur once, i.e. singleton
-words (TF1). It also consider removing words with low inverse document frequency (IDF). This method is used mostly on document analysis, rather that text.
+\textbf{Methods based on Zipf's Law (Z-Methods):} Additionally to the classic stop list, it uses three stop word creation methods moved by Zipf's law, including: removing most frequent words (TF-High) and removing words that occur once, i.e. singleton words (TF1). It also consider removing words with low inverse document frequency (IDF). This method is used mostly on document analysis, rather that text.
 
 \textbf{The Mutual Information Method (MI):} A supervised method that works by computing the mutual information between a given term and a document class (e.g., positive, negative), providing a suggestion of how much information the term can tell about a given class. Low mutual information suggests that the term has a low discrimination power and consequently it should be removed.\cite{MI}
 
@@ -91,8 +99,17 @@ For Finduber project the first method is more suitable, because it has to remove
 
 Usually, stemming algorithms can be classified into three groups: truncating, statistical and mixed methods. Each method has it way of finding the stems of the word variants. After a deep analysis of all method, the first one turns out to be the most efficient for the Finduber project. 
 
-\textbf{Truncating Methods} are related to removing the sufixes or prefixes, i.e. affices of a word. One of the most basic stemmer is the Truncate (n) stemmer. It truncates a word at the nth symbol, thus it keeps n letter and removes the rest. Words shorter that n are kept as it is.
+\textbf{Truncating Methods} are related to removing the sufixes or prefixes, i.e. affices of a word. One of the most basic stemmer is the Truncate (n) stemmer. It truncates a word at the nth symbol, thus it keeps n letter and removes the rest. Words shorter that n are kept as it is. Another approach is S-stemmer -- an algorithm conflating singular and plural forms of English nouns. It removes suffixes in plurals so as to convert them to the singular forms. \cite{truncat-stemm}
 
+Most popular stemming algorithms used now are: Porter Stemmer and Lancaster Stemmer.
+
+\textbf{Porter Stemmer} is one of the earliest stemming algorithms. It works by heuristically identifying word suffixes and stripping them off, with some regularization of the endings. The algorithm leaves alon strings of length one or two. 
+
+\textbf{Lancaster Stemmer} is more aggressive than portret stemmer. With portret algorithm, the stemmed representations are usualy fairly intuitive to a reader, not so with Lancasters. However, it is faster and will reduce the set of words hugely. 
+
+For Finduber project the Lancaster stemmer algorithm is used, because it is need to group as many words as possible according to their morphological forms.
+
+\textbf{Term Frequency} measures how frequently a term occurs in a sequence of text.
 
 \subsection{Big Data}
 
