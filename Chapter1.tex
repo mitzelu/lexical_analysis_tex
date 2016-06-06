@@ -37,18 +37,19 @@ In order to make the project real the following plan should be executed:
 \item[--] Food
 \end{enumerate}
 
-The purpose of creating this database is to assign a given word to an exiting category during search engine process.
+The purpose of creating this database is to assign a given word to an existing category during search engine process. A detailed explication about methods and technologies used to create the taxonomy database is given in Chapter 3. 
 
-\textbf{Youtube database optimization} is a crucial step of the Finduber project. It represents the second step of the search engine algorithm, given that the engine determined the category to which the inputted by user word belogs. The problem now is how to use the word category for further search. How it can be used to extract required information from the database with youtube users? Obviously, Youtube page does not have the defined categories that Finduber project uses. Youtube categories are: 
+\textbf{Youtube database optimization} is a crucial step of the Finduber project. It represents the second step of the search engine algorithm, given that the engine determined the category to which the inputted by user word belogs. The problem now is how to use the word category for further search. How it can be used to extract required information from the database with youtube users? Obviously, Youtube page does not have the defined categories that Finduber project uses. The solution is to group youtube users from database to categories defined in the application based on their description, username and keywords. Lexical analysis and natural language processing techniques are used to optimize the database. A deeper analyses of these techniques is described further in the chapter. 
 
- It uses lexical analysis and natural language processing techniques to optimize the database for a better search result. 
+\textbf{Web application} represents a simple client user interface that shows the results obtained from previous two steps described above. It do not contains deep web services, because its primary purpose is to test the developed search engine. As seen from the page mockup shown in Figure \ref{pagemockup} it contains only a search box and a search button.
 
 \begin{figure}[!ht]
 \centering
 \includegraphics[width=15cm]{moch}
-\caption{Page Mockup}
+\caption{Page Mockup} \label{pagemockup}
 \end{figure}
 
+These three steps described represents the rough project plan. Further in the chaper are described main techniques, methods and algorithms choosen for developing the steps. It is also explained why these frameworks and technologies are more convenient for project goals. 
 
 \subsection{Lexical Analysis and Text Mining}
 
