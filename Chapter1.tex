@@ -150,7 +150,7 @@ The described architecture of Hadoop is shown in the \mbox{figure \ref{hdfs_arch
 
 During injection, the data is broken down into smaller chunks. The master node holds all the metadata information regarding the data split up and this enables it to recreate the whole data set using different slave machines.\cite{blog} The client submits a Job to the master node and it in turn assigns the Job to the slave nodes. For assigning the tasks to the salve nodes is respnsible the Jobtracker process that runs on the master node. The task is not run on all the data that is hold on the salve node but only on the data slice that has been specified by the Master Node. The slaves run TaskTracker, HDFS to store data, and map and reduce functions for data computation.\cite{rosebt} If one of the data replicas on HDFS is corrupdet, JobTracker, will look for an alternate slave node that contains the same data. 
 
-MR in complement to a RDBMS is a good fit for problems that need to analyze the whole dataset in a batch fashion and unstructured data. Because, in the case of MR framework, data is partitioned the functional primitives (map and reduce) cand work in parallel on separate partitions. More differences between MR and RDBSMS are shown in \mbox {table \ref{table:mrdiff}}:
+MR in complement to a RDBMS is a good fit for problems that need to analyze the whole dataset in a batch fashion and unstructured data. Because, in the case of MR framework, data is partitioned the functional primitives (map and reduce) cand work in parallel on separate partitions. More differences between MR and RDBSMS are shown in \mbox {Table \ref{table:mrdiff}}:
 
 \begin{table}[!ht]
 \begin{center}
@@ -239,7 +239,7 @@ Document databases have very powerful query engines and indexing features that m
 
 As was mentioned at the beginning of the chapter, the Finduber project uses two databases. The youtube database uses PostgreSQL to store the data. For taxonomy database it is choosen the document-based model -- MongoDB. This model is the most optimal choise, because it supports documents hierarchy and this is exactly what is need for storing a category tree.
 
-\chapter{PostgreSQL indexing in Rails}
+\subsection{PostgreSQL Indexing in Rails}
 
 Postgres, is an object-relational database management system (ORDBMS) with an emphasis on extensibility and standards-compliance. Although is not a NoSQL database, it has a long track record of use in data warehouse. For a decade before Hadoop launched, PostgreSQL was the only pure open-source option for large data volumes and complex analytics. One thing relational database do a lot of is sorting data. The bigger the database size, the more the performance of those sorts becomes the dominating factor in overall response time.\cite{whypostgres} To solve this problem, newer versions of PostgreSQL supports indexing. 
 
@@ -249,7 +249,45 @@ PostgreSQL includes four index types: B-tree, Hash, GiST and GIN, each of them u
 
 B-tree is a self-balancing tree data structure that keeps data sorteed and allows searches, insertions, deletions and sequential access in logarithmic time. In particular, the PostgreSQL query planner will consider using a B-tree index whenever an indexed column is involved in a comparison using one of these operators: <, <=, =, >= and > . Constructs equivalent to combinations of these operators, such as BETWEEN and IN, can also be implemented with a B-tree index search. Also, an IS NULL or IS NOT NULL condition on an index column can be used with a B-tree index.\cite{postgresweb} Using B-tree indexes can be created primary keys, foreign keys, uniques indexes and sorted indexes. 
 
-\textbf{Primary key indexes}
+In general it's a good practice to add an index for primary key in database tables. Since the number of youtube users is huge, the database tables will have a large number of rows. That is why it is need of an index, thus the lookup will take place in the index instead of sequentially scan the tables for the matching rows. Luckily, PostgreSQL automatically creates an index for primary keys to enforce uniqueness. Thus, it is not necessary to create an index explicitly for primary key columns. An example is shown in listing \ref{primarykey}. 
+
+\lstinputlisting [language=Ruby, caption={Primary Key Index in Rails}, label=primarykey]{../src/primary_key.rb}
+
+This creates a primary key index using the B-tree type to index the id column. In postgres table description it will look like: 
+
+\lstinputlisting [language=SQL, caption={Primary Key Index in PostgreSQL Console}, label=primarykey]{../src/psql.sql}
+
+
+Compared to primary keys, foreign keys of the table are not indexed automatically in Rails. Their purpose is to make association between multiple tables. If the developer wants to link two tables from the database using foreign key, it should define it in the database schema. For example notation shown in listing \ref{indexes} will associate table products with table categories, that has a row called category\_id.
+
+Unique indexes for a column are used to guarantee that the table won't have more than one row with the same value for that column. This types of indexes are mainly used in the systems where users can create accounts. In this case using only validation in the model isn't enough to enforce uniquencess. Because if two users will hit the ``Sign up" button at the same time, Rails will search in the user table for that credentials and respond back there is no such record and it can be saved in the table. Thus, two records with the same email address, for example, will be saved in the database. To avoid this and ensure that table users will have uniques records in email field is need to create an unique index as specified in listing \ref{indexes}
+
+
+Another important type of index, that is used in Finduber project is sorted index. It comes to help to handle SELECT queries with WHERE clause used over a big number of rows. Tom Ward in his blog post ``Using indexes in rails: Index your associations" made an experiment to test the efficiency of using sorted indexes. He took a sql query and ran it on a database with 1 million rows. Then Tom Ward added a sorted index to the database and run the same query on the same database. The result of the experiment is shown in Table \ref{table:sql_results}
+
+\begin{table}[!ht]
+\begin{center}
+\caption{Execution Time of SQL Queries \cite{experiment_results}}
+\begin{tabular}{| c | c | c |}
+\hline
+\textbf{Sorted index}& \textbf{SQL query} & \textbf{Execution Time} \\
+\hline
+\textbf{without} & SELECT * FROM conversations WHERE user\_id = 41; & 1.42 sec \\
+\hline
+\textbf{with} & SELECT * FROM conversations WHERE user\_id = 41;& 0.01 sec \\
+\hline
+\end{tabular}
+\label{table:sql_results}
+\vspace{-2.5em}
+\end{center}
+\end{table}
+
+
+\lstinputlisting [language=Ruby, caption={Creation of Foreign, Unique and Sorted Keys in Rails}, label=indexes]{../src/foreign.rb} 
+
+
+
+
 
 
 
