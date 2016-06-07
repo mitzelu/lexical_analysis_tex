@@ -260,21 +260,18 @@ This creates a primary key index using the B-tree type to index the id column. I
 
 Compared to primary keys, foreign keys of the table are not indexed automatically in Rails. Their purpose is to make association between multiple tables. If the developer wants to link two tables from the database using foreign key, it should define it in the database schema. For example notation shown in listing \ref{indexes} will associate table products with table categories, that has a row called category\_id.
 
-Unique indexes for a column are used to guarantee that the table won't have more than one row with the same value for that column. This types of indexes are mainly used in the systems where users can create accounts. In this case using only validation in the model isn't enough to enforce uniquencess. Because if two users will hit the ``Sign up" button at the same time, Rails will search in the user table for that credentials and respond back there is no such record and it can be saved in the table. Thus, two records with the same email address, for example, will be saved in the database. To avoid this and ensure that table users will have uniques records in email field is need to create an unique index as specified in listing \ref{indexes}
-
-
 Another important type of index, that is used in Finduber project is sorted index. It comes to help to handle SELECT queries with WHERE clause used over a big number of rows. Tom Ward in his blog post ``Using indexes in rails: Index your associations" made an experiment to test the efficiency of using sorted indexes. He took a sql query and ran it on a database with 1 million rows. Then Tom Ward added a sorted index to the database and run the same query on the same database. The result of the experiment is shown in Table \ref{table:sql_results}
 
 \begin{table}[!ht]
 \begin{center}
 \caption{Execution Time of SQL Queries \cite{experiment_results}}
-\begin{tabular}{| c | c | c |}
+\begin{tabular}{| c | c | c | c |}
 \hline
-\textbf{Sorted index}& \textbf{SQL query} & \textbf{Execution Time} \\
+\textbf{Key}& \textbf{SQL query} & \textbf{Execution Time} & \textbf{Rows} \\
 \hline
-\textbf{without} & SELECT * FROM conversations WHERE user\_id = 41; & 1.42 sec \\
+\textbf{NULL} & \pbox{20cm}{SELECT * FROM conversations \\ WHERE user\_id = 41;} & 1.42 sec & 1001111 \\
 \hline
-\textbf{with} & SELECT * FROM conversations WHERE user\_id = 41;& 0.01 sec \\
+\textbf{used\_id\_ix} & \pbox{20cm}{SELECT * FROM conversations \\ WHERE user\_id = 41;} & 0.01 sec & 108 \\
 \hline
 \end{tabular}
 \label{table:sql_results}
@@ -282,8 +279,17 @@ Another important type of index, that is used in Finduber project is sorted inde
 \end{center}
 \end{table}
 
+\vspace{10 pt}
+
+Key column shows the index that database decided to use, in first case it is NULL as there were no indexes, but in the second case it uses the added index -- user\_id\_ix careted as in listing \ref{indexes}. The rows column is also relevant, it shows at how many rows the database will need to look to give the results. 
+The difference is remarkable. Using sorted index the query was executed only in 0.01 seconds that means an increase of 99.3 \%. It is due the fact that the query do not look in the all database, but only through  108 rows. The experiment demonstrates that the usage of sorted indexes totally worth it. 
+
+It is also possible to add aditional clauses to the sorted index. For Finduber project ORDER BY clause is needed. By default, the entries in a B-tree index is sorte in ascending order, but for the system the descending order is required. In listing \ref{indexes} is shown an example of sorted index creation that group articles from the tabel posts, sorted in descending order by released\_at column. For unreleased articles, the released\_at value is NULL.
+
+Unique indexes for a column are used to guarantee that the table won't have more than one row with the same value for that column. This types of indexes are mainly used in the systems where users can create accounts. In this case using only validation in the model isn't enough to enforce uniquencess. Because if two users will hit the ``Sign up" button at the same time, Rails will search in the user table for that credentials and respond back there is no such record and it can be saved in the table. Thus, two records with the same email address, for example, will be saved in the database. To avoid this and ensure that table users will have uniques records in email field is need to create an unique index as specified in listing \ref{indexes}
 
 \lstinputlisting [language=Ruby, caption={Creation of Foreign, Unique and Sorted Keys in Rails}, label=indexes]{../src/foreign.rb} 
+
 
 
 
