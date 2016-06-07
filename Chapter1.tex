@@ -144,7 +144,7 @@ The described architecture of Hadoop is shown in the \mbox{figure \ref{hdfs_arch
 
 \begin{figure}[!ht]
 \centering
-\includegraphics[width=10cm]{hdfs_architecture}
+\includegraphics[width=15cm]{hdfs_architecture}
 \caption{Hadoop Architecture\cite{hdfsFigure}}\label{hdfs_arch}
 \end{figure}
 
@@ -238,6 +238,22 @@ Key-value stores are used in massive multi-player on-line gaming to manage each 
 Document databases have very powerful query engines and indexing features that make it easy and fast to execute many different optimized queries. \cite{mongodb-adv} Three important representatives of document stoarge systems are: MongoDB, SimpleDB and Couch DB. 
 
 As was mentioned at the beginning of the chapter, the Finduber project uses two databases. The youtube database uses PostgreSQL to store the data. For taxonomy database it is choosen the document-based model -- MongoDB. This model is the most optimal choise, because it supports documents hierarchy and this is exactly what is need for storing a category tree.
+
+\chapter{PostgreSQL indexing in Rails}
+
+Postgres, is an object-relational database management system (ORDBMS) with an emphasis on extensibility and standards-compliance. Although is not a NoSQL database, it has a long track record of use in data warehouse. For a decade before Hadoop launched, PostgreSQL was the only pure open-source option for large data volumes and complex analytics. One thing relational database do a lot of is sorting data. The bigger the database size, the more the performance of those sorts becomes the dominating factor in overall response time.\cite{whypostgres} To solve this problem, newer versions of PostgreSQL supports indexing. 
+
+Indexes are a common way to enhance database performance. An index allows the database server to find and retreive specific rows much faster. But they also add overhead to the database system as a whole, so they should be used sensibly.
+
+PostgreSQL includes four index types: B-tree, Hash, GiST and GIN, each of them using a different algorithm that is best suited to different types of queries. B-tree index type is the most commonly used index type for most use cases, that is way it will be used in Finduber project as well. The main drawback of hash indexes is that they cannot be recovered after a crash of power loss. 
+
+B-tree is a self-balancing tree data structure that keeps data sorteed and allows searches, insertions, deletions and sequential access in logarithmic time. In particular, the PostgreSQL query planner will consider using a B-tree index whenever an indexed column is involved in a comparison using one of these operators: <, <=, =, >= and > . Constructs equivalent to combinations of these operators, such as BETWEEN and IN, can also be implemented with a B-tree index search. Also, an IS NULL or IS NOT NULL condition on an index column can be used with a B-tree index.\cite{postgresweb} Using B-tree indexes can be created primary keys, foreign keys, uniques indexes and sorted indexes. 
+
+\textbf{Primary key indexes}
+
+
+
+
 
 
 
