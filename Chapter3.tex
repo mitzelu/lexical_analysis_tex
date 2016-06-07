@@ -6,20 +6,11 @@ The whole part of the project is written in Python. Thus, frameworks and librari
 
 As the thesis is based on lexical analysis, the main two parts of its are pre-run console applications.
 
-\subsection{Category Database}
-Creating a database that will hold category tree for a pre-defined set of industries is the first part in the project cycle. As primary industries are choosen:
+\subsection{Taxonomy Database}
 
-\begin{enumerate}
-\item[--] beauty
-\item[--] fashion
-\item[--] sports
-\item[--] games
-\item[--] food
-\end{enumerate}
+The main two ideas were to use the hypernym/hyponym classification or wikipedia category tree. After some research it turns out that first approach is not suitable for my purpose, because defined categories has abstract words, like: beauty, fashion. Thus, the hypernym/hyponym tree of such a word will contain only abstract words like: appearance, attractiveness, handsomeness. In this way, it will never categorize term -- soap -- to industry -- beauty. 
 
-The main two ideas were to use the hypernim/hyponim classification or wikipedia category tree. After some research it turns out that first approach is not suitable for my purpose, because defined categories has abstract words, like: beauty, fashion. Thus, the hyponim/hypernim tree of such a word will contain only abstract words like: appearance, attractiveness, handsomeness. In this way, it will never categorize term -- soap -- to industry -- beauty. 
-
-Second method is more conveinent for Finduber project. Wikepia is the biggest online dictionary and contains over 473K unuque categories and over 995K edges in the categories taxonomic tree. Bassicaly, every word can be found on it page. Moreover, every article has one or more categories to which it belongs and each category a list of subcategories. That is what we need so far. 
+Second method is more conveinent for Finduber project. Wikepia is the biggest online dictionary and contains over 473K unuque categories and over 995K edges in the categories taxonomic tree. Basiccaly, every word can be found on it page. Moreover, every article has one or more categories to which it belongs and each category a list of subcategories. That is what it needs so far. 
 
 For a better understanding here is an example of a edge of wikipedia category tree:
 
@@ -59,8 +50,49 @@ Final step is to store data in the MongoDB model. At this point the database of 
 
 \subsection{Database Optimization using Lexical Analysis}
 
-This part of the project is the main task that should be implemented in order to get the desired results of Finduber project. It represents also a console application that is meant to group database records in pre-defined categories.
+This part of the project is the main task that should be implemented in order to get the desired results of Finduber project. It represents also a console application that is meant to group database records in pre-defined categories. For doing this it is need to set up an working plan. The crucial aspects that should be covered are: 
 
+\begin{itemize}
+\item[--] Defining the database records that are relevant for text mining process.
+
+\item[--] Analysing methods of database accessing to get the data.
+
+\item[--] Implementing the pre-processing algorithm described in Section \ref{ssec:lexical} using technologies that work with big data.
+\end{itemize}
+
+Grouping a set of objects in such a way that objects in the same group are more similar to each others that to those in other group in machine learning is called cluster analysis. Cluster analysis itself is not one specific algorithm, but the general task to be solved. It can be achieved by various algorithms that differ significantly in their notion of what constitutes a cluster and how to efficiently find them.
+
+The notion of a ``cluster" cannot be precisely defined, which is one of the reasons why there are so many clustering algorithms. Each of them employs different cluster models. Only understanding these cluster models, the difference between algorithms can be understood. This research is important for Finduber project, because it will help to choose the most suitable algorithm. Typical cluster models include:
+
+\begin{enumerate}
+
+\item[--] Connectivity models. The hierarchical clustering builds models based on distance connectivity.
+
+\item[--] Centroid models. For example, the k-means algorithm represents each cluster by a single mean vector.
+
+\item[--] Distribution models. Clusters are modeled using statistical distributions, such as multivariate normal distributions used by the Expectation-maximization algorithm.
+
+\item[--] Subspace models: in Biclustering (also known as Co-clustering or two-mode-clustering), clusters are modeled with both cluster members and relevant attributes.
+
+\item[--] Group models: some algorithms do not provide a refined model for their results and just provide the grouping information.
+
+\end{enumerate}
+
+A set of such clusters represents a clustering. It is also important to determine what type of clustering should be used: hard or soft. Hard clustering means that each object belongs to a cluster or not. In soft clustering object belongs to each cluster to a certain degree (for example, a likelihood of belonging to the cluster). 
+
+There are also a set of other characteristings that should be examinated: 
+
+\begin{enumerate}
+\item[--] strict partitioning clustering -- each object belongs to exactly one cluster;
+
+\item[--] strict partitioning clustering with outliers -- objects can also belong to no cluster, and are considered outliers.
+
+\item[--] overlapping clustering (also: alternative clustering, multi-view clustering): while usually a hard clustering, objects may belong to more than one cluster.
+
+\item[--] hierarchical clustering: objects that belong to a child cluster also belong to the parent cluster
+\end{enumerate}
+
+Finduber system will use hard clustering and strict partitioning clustering with outliers. These two types of clustering are chosen, because the data should be classified in a fix and pre-defined number of categories. Now the problem is to find the best algorithm that will solve the problem. 
 
 
 
