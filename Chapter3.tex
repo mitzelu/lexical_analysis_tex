@@ -107,37 +107,45 @@ Text corpus represents a large and structured set of texts that is used to do st
 
 \lstinputlisting [language=Ruby, caption={Database Schema}, label=schema]{../src/schema.rb}
 
-Rows: title, description and keywords are chosen for the text corpus. Given that the database has over one million records the corpus set will represent a large data set. Processing and analysing it may take a lot of time. To solve the issue the MapReduce framework is used. 
+Columns: title, description and keywords are chosen for the text corpus. Given that the database has over one million records the corpus set will represent a large data set. Processing and analysing it may take a lot of time. To solve the issue the MapReduce framework is used. 
 
+MapReduce is an implementation for processing and generating lage data sets. It consists of an workflow and a distributed algorithm. To write a MapReduce workflow it is need to create two scripts: the map script, and the recude script. 
 
-MapReduce is an implementation for processing and generating lage data sets. It consists of an workflow and a distributed algorithm. 
+The map script takes some input data, and maps it to \textless key, value \textgreater pairs according to the specifications. For Finduber project, teh task is to count word frequnecies in a text, thus \textless word, count \textgreater will represents \textless key, value \textgreater pairs. The map script, then would emit a\textless word, 1 \textgreater pair for each word in the input stream. Aggregatio  (i.e. actual counting) is not the responsability of the map script, its goal is to model the data into \textless key, value \textgreater pairs for the reducer to aggregate. In the listing \ref{mapfunction} is shown the Map script with all specifications used in the project.
 
-To write a MapReduce workflow it is need to create two scripts: the map script, and the recude script. 
+\lstinputlisting [language=Python, caption={Map Function}, label=mapfunction]{../src/map.py}
 
-The map script takes some input data, and maps it to <key, value> 
-pairs according to the specifications. For Finduber project, the task is to count word  frequencies in a text, thus the <word, count> will represent <key, value> pairs. The map script, the, would emit a <word, 1> pair for each word in the input stream. Aggregation (i.e. actual counting) is not the responsability of the map script, its goal is to model the data into <key, value> pairs for the reducer to aggregate.
+Emitted \textless key, value \textgreater pairs are then ``shuffled", that basically means that pairs with the same key are grouped and passed to a single machine, which will then run the reduce script over them.
 
-Emitted <key, value> pairs are then ``shuffled", that basically means that pairs with the same key are grouped and passed to a single machine, which will then run the reduce script over them.
+One important specification of map function from listing \ref{mapfunction} is to filter the given corpus from stop-words, punctuation and to performe stemming. For this first it creates the corpus, as was mentioned about, the corpus consists of title and description. The corpus is passed as an argument to filt function represented in listing \ref{filtfunction}. The map function returns a dictionary that have as key the username of the user, that is used as an identifier. As values has a list of corpus tokens. 
 
-The reduce script takes a collection of <key, value> pairs and 
-``reduces" them according to the specified reduce script. In Finduber project the task is to count the number of word occurrences to get frequencies. Thus, the reduce script will simply sum the values of the collection of <key, value> pairs which have the same key. The Figure \ref{mapreduce process} illustrates the described scenario for Fnduber project example.
+\lstinputlisting [language=Python, caption={Filter Function}, label=filtfunction]{../src/filt.py}
 
+The reduce script takes a collection of \textless key, value \textgreater pairs from the returned dictionary and ``reduces" them according to the specified reduce script. In Finduber project the task is to count the number of word occurrences to get frequencies. Thus, the reduce script will simply sum the values of the collection of \textless key, value \textgreater pairs which have the same key. Another responsability is to sort the words by their frequencies and to keep only the top four. The script is show in listing \ref{reducefunction}
 
-The distributed algorithm oerchestrates the processing by marshalling the distributed servers, running the various tasks in parallel, managing all communications an data transfers betwen the parts of the system. Python has it own implemenation of the MapReduce distributed computing framework called mincemeat. The framework is: fault tolerant -- clients can join or leave the cluster at any time without affecting the entire process; secure -- it authenticates both ends of every connection, ensuring that only authorized code is executed. Mincemeat is an open sourcedistributed under the MIT Lincese , that is why I used it for Finduber project. 
+\lstinputlisting [language=Python, caption={Reduce Function}, label=reducefunction]{../src/reduce.py}
 
+The distributed algorithm orchestrates the processing by marshalling the distributed servers, running the various tasks in parallel, managing all communications an data transfers between the parts of the system. Python has it own implemenation of the MapReduce distributed computing framework called mincemeat. The framework is: fault tolerant -- clients can join or leave the cluster at any time without affecting the entire process; secure -- it authenticates both ends of every connection, ensuring that only authorized code is executed. Mincemeat is an open source distributed under the MIT Lincese , that is why I used it for Finduber project. The declaration how to pass the data and map-reduce scripts to server is shown in listing \ref{startserver}
 
+\lstinputlisting [language=Python, caption={Start MapReduce Server}, label=startserver]{../src/server.py}
 
+Finduber project has to process and analyse using MapReduce framework 1 million database records that represent 300 MB of data. The text corpus was store in an text file for faster processing. For this the power of the PostreSQL was used. PostgreSQL has the functionality copy from the databse only required columns. As was specified text corpus for Finduber project consits of the columns: title and description. In the listing \ref{psqlcopy} is the PostreSQL command that was used. The id column is used for identification purpose.
 
+\lstinputlisting [language=Python, caption={Command to Text Corpus}, label=psqlcopy]{../src/copypsql.py}
 
+The corpus is ready, the framework and map-reduce scripts are created, it remains to analyse one more thing. How to update the records according to the results. Database has an empty column called -- category. After that every record will be categorised it is necessary to update the category column in order to keep the results. To update the category column during execution of MapReduce framework using sql queries the process will take a long time. It was reached this conclusion after a test run of the elaborated algorithm. The test was running on a limited number of records -- 100000. The execution time was 7 hours. This means that for entire databse of 1 million records the amunt of time will be 10 time bigger -- 70 hours. For reducing the execution time Finduber project has another method of updating the PostgreSQL database. The results from the MapReduce framework are stored in a csv file as shown in listing \ref{saveresults}.
 
+\lstinputlisting [language=Python, caption={Storing the Results}, label=saveresults]{../src/output.py}
 
+In first part of the listing the script checks to wich category the given result from the MapReduce server belongs. Second part stores the data in a csv file. Using these approach of saving the results, the execution time of the MapReduce was 1 hour and 5 minutes. The improvement is considerable. Having the file with the user title and its category other functionalities of PostgreSQL can be used to update the database. According to the file is created a temporary table using command shown in listing \ref{temporarfile}
 
+\lstinputlisting [language=Python, caption={Create a Temporary Table in PostreSQL}, label=temporarfile]{../src/temp.py}
 
+Now the last step is to update the database using this temporary table as specifed in listing \ref{updatetable}. After this the temporary file will be automatically deleted from the database. These is the last step in the process of database optimization using lexical analysis. 
 
+\lstinputlisting [language=Python, caption={Update Database using Temporary Table}, label=updatetable]{../src/updatetemp.py}
 
-
-
-
+\subsection{Web User Interface}
 
 
 
