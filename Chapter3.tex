@@ -70,7 +70,7 @@ The notion of a ``cluster" cannot be precisely defined, which is one of the reas
 
 \item[--] Centroid models. For example, the k-means algorithm represents each cluster by a single mean vector.
 
-\item[--] Distribution models. Clusters are modeled using statistical distributions, such as multivariate normal distributions used by the Expectation-maximization algorithm.
+\item[--] Distribution models. Clusters are modeled using statistical distributions, such as multivariate normal distributions used by the term frequnecy algorithm. 
 
 \item[--] Subspace models: in Biclustering (also known as Co-clustering or two-mode-clustering), clusters are modeled with both cluster members and relevant attributes.
 
@@ -92,7 +92,51 @@ There are also a set of other characteristings that should be examinated:
 \item[--] hierarchical clustering: objects that belong to a child cluster also belong to the parent cluster
 \end{enumerate}
 
-Finduber system will use hard clustering and strict partitioning clustering with outliers. These two types of clustering are chosen, because the data should be classified in a fix and pre-defined number of categories. Now the problem is to find the best algorithm that will solve the problem. 
+Finduber system will use hard clustering and strict partitioning clustering with outliers. These two types of clustering are chosen, because the data should be classified in a fix and pre-defined number of categories. Now the problem is to find the best algorithm that will solve the problem. To do this below is provided a deeper analysis of some clustering algorithms that can be used. 
+
+Hierarchical clustering algorithm builds a cluster hierarchy or, in other words, a tree of clusters. Every cluster node contains child clusters; sibling clusters partition the points covered by their common parent. Hierarchical clustering methods are categorized
+into agglomerative (bottom-up) and divisive (top-down). This algorithm is not suitable for Finduber project, because it do not have nested categories.
+
+K-means clustering is a method of vector quantization. It aims to partition n observations into k clusters in which each observation belongs to the cluster with the nearest mean, serving as a prototype of the cluster. In particular, the parameter k is known to be hard to choose when not given by external constraints. The algorithm has many limitations that make it powerless to solve the clustering problem of Finduber system. One of the limitation is that k-means algorithm cannot be used on non-numeerical data. The algorithm has problems when clusters are of difering sizes and densities, also when the data contains outliters. 
+
+So far, the algorithms that use connectivity models and centroid models are not suitable for solving the data categorization problem defined in Finduber project. Distribution models algorithm is the right option. 
+
+Term frequency is a statistical measure used to evaluate how important a word is to a corpus. The importance increases proportionally to the number of times a word appears in the document. The accuracy of the algorithm depends on the quality of chosen corpus and on the defined feature extraction. 
+
+Text corpus represents a large and structured set of texts that is used to do statistical analysis. To create the corpus for Finduber project it is need to examine the database schema from listing \ref{schema} and to see which records are more relevant. 
+
+\lstinputlisting [language=Ruby, caption={Database Schema}, label=schema]{../src/schema.rb}
+
+Rows: title, description and keywords are chosen for the text corpus. Given that the database has over one million records the corpus set will represent a large data set. Processing and analysing it may take a lot of time. To solve the issue the MapReduce framework is used. 
+
+
+MapReduce is an implementation for processing and generating lage data sets. It consists of an workflow and a distributed algorithm. 
+
+To write a MapReduce workflow it is need to create two scripts: the map script, and the recude script. 
+
+The map script takes some input data, and maps it to <key, value> 
+pairs according to the specifications. For Finduber project, the task is to count word  frequencies in a text, thus the <word, count> will represent <key, value> pairs. The map script, the, would emit a <word, 1> pair for each word in the input stream. Aggregation (i.e. actual counting) is not the responsability of the map script, its goal is to model the data into <key, value> pairs for the reducer to aggregate.
+
+Emitted <key, value> pairs are then ``shuffled", that basically means that pairs with the same key are grouped and passed to a single machine, which will then run the reduce script over them.
+
+The reduce script takes a collection of <key, value> pairs and 
+``reduces" them according to the specified reduce script. In Finduber project the task is to count the number of word occurrences to get frequencies. Thus, the reduce script will simply sum the values of the collection of <key, value> pairs which have the same key. The Figure \ref{mapreduce process} illustrates the described scenario for Fnduber project example.
+
+
+The distributed algorithm oerchestrates the processing by marshalling the distributed servers, running the various tasks in parallel, managing all communications an data transfers betwen the parts of the system. Python has it own implemenation of the MapReduce distributed computing framework called mincemeat. The framework is: fault tolerant -- clients can join or leave the cluster at any time without affecting the entire process; secure -- it authenticates both ends of every connection, ensuring that only authorized code is executed. Mincemeat is an open sourcedistributed under the MIT Lincese , that is why I used it for Finduber project. 
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
