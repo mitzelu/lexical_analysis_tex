@@ -63,6 +63,63 @@ The purpose of creating this database is to assign a given word to an existing c
 
 These three steps described represents the rough project plan. Further in the chaper are described main techniques, methods and algorithms choosen for developing the steps. It is also explained why these frameworks and technologies are more convenient for project goals. 
 
+\subsection{Machine Learning}
+
+Over the past two decades Machine Learning has become one of the mainstays of information technology and with that, a rather central, albeit usually hidden, part of our life. With the ever increasing amounts of data becoming available there is good reason to believe that smart data analysis will become even more pervasive as a necessary ingredient for technological progress, \cite{machinelearningdef}. 
+
+Machine learning is a set of tools that, broadly speaking, allow us to ``teach" computers how to perform tasks by providing examples of how they should be done. For example, suppose it is need to write a program to distinguish between valid email messages and unwanted spam. For this a set of simple rules have to be written, such as flagging messages that contains certain features. However, writing rules to accurately distinguish which text is valid can actually be quite difficult to do well, resulting either in many missed spam messages, or, worse, many lost emails.
+
+Often, machine learning methods are broken into two phases:
+\begin{enumerate}
+\item[--] Training: A model is learned from a collection of training data.
+\item[--] Test: The model is used to make decisions about some new test data.
+\end{enumerate}
+
+Machine learning tasks are typically classified into three broad categories, depending on the nature of the learning ``signal" or ``feedback" available to a learning system. These are as specfied in \cite{machinetypes}:
+
+\begin{itemize}
+
+\item[--] \textbf{Supervised Learning:} in which the training data is labeled with the correct answers, e.g., ``spam" or ``ham". The two most common types of supervised learning are classification (where the outputs are discrete labels, as in spam filtering) and regression (where the outputs are real-valued).
+\item[--] \textbf{Unsupervised learning:} in which it is given a collection of unlabeled data, which is need to analyze and discover patterns within. The two most important examples are dimension reduction and clustering.
+\item[--] \textbf{Reinforcement learning} in which an agent (e.g., a robot or controller) seeks to learn the optimal actions to take based the outcomes of past actions.
+\end{itemize}
+
+For Finduber project first two types of categories are analysed to decide which one to use. Thus, further are analyzed classification and clustering methods.
+
+\textbf{Classification} in machine learning is the problem of identifying to which of a set of categories (sub-populations) a new observation belongs, on the basis of a training set of data containing observations (or instances) whose category membership is known. Often, the individual observations are analyzed into a set of quantifiable properties, known variously as explanatory variables or features. An algorithm that implements classification, especially in a concrete implementation, is known as a classifier. The term ``classifier" sometimes also refers to the mathematical function, implemented by a classification algorithm, that maps input data to a category.
+
+The basic classification task has a number of interesting variants. For example, in multi-class classification, each instance may be assigned multiple labels; in open-class classification, the set of labels is not defined in advance; and in sequence classification, a list of inputs are jointly classified. A classifier is called supervised if it is built based on training corpora containing the correct label for each input. The framework used by supervised classification is shown in Figure \ref{classification}
+
+\begin{figure}[!ht]
+\centering
+\includegraphics[width=15cm]{supervised-classification}
+\caption{Supervised Classification}\label{classification}, \cite{nltk}
+\end{figure}
+
+Examples of classfication problems can be: text categorization, oprical character recognition, spoken language understanding, bioinformatics and others. The most known algorithms used in classification ptoblem are Naive Bayes classifier and Kernel estimation.
+
+The Naive Bayesian Classification represents a supervised learning method as well as a statistical method for classification. Assumes an underlying probabilistic model and it allows us to capture uncertainty about the model in a principled way by determining probabilities of the outcomes, \cite{bayesian} The main disadvantage of the algorithm is that it needs a lof of labeled data in order to have a high accuracy. Usually researches are providing sets of labeled data for some purpose, for example a set of test corpus that is used to classify a review as negative or positive. Obviously, there are no available sets of labeled data suitable for Finduber problem. That is why the Naive Bayesian classification is not the best solution in our case. 
+
+Kernel estimation is represented by k-Nearest Neighbor algorithm, that uses the local neighborhood to obtain a prediction. The K memorized examples more similar to the one that is being classified are retrieved. Since it has a high accuracy rate (with K-nn 1 Euclidean distance the accuracy is up to 96 \%) the algorithm has many drawbacks. First, it is computationally expensive to find the k nearest neighbours when the dataset is very large. Also, the model can not be interpreted (there is no description of the learned concepts), \cite{k-neighbor}
+
+\textbf{Clustering} is a process of partitioning a set of data (or objects) into a set of meaningful sub-classes, called clusters. The quality of a clustering result also depends on both the similarity measure used by the method and its implementation. The quality of a clustering method is also measured by its ability to discover some or all of the hidden patterns. Clustering has wide applications in
+
+\begin{itemize}
+\item[--] Economic Science (especially market research).
+\item[--] Document classification
+\item[--] Pattern Recognition.
+\item[--] Spatial Data Analysis (create thematic maps in GIS by clustering feature spaces).
+\item[--] Image Processing
+\end{itemize}
+
+Clustering algorithms are of two types, depending on problem that solve. First type is partitional, when objects are devided into non-overlapping clusters such that each data object is in exactly one subset. The hierarchical type represents a set of nested clusters organized as a hierarchy. In this case it is also used a dendrogram, that represents tree diagram frequently used to illustrate the arrangement of the clusters produced. An illustration of described types is given in Figure \ref{types}
+
+\begin{figure}[!ht]
+\centering
+\includegraphics[width=15cm]{partitional}
+\caption{Types of Clustering}\label{types}, \cite{typescluster}
+\end{figure}
+
 \subsection{Lexical Analysis and Text Mining} \label{ssec:lexical}
 
 Lexical analysis is defined as process of taking an input string of characters and producing a sequence of symbols called token, that may be handled more easily by a parser. Finduber project works with database records that consists of chunks of text. In general, big chunks of text does not represent a big value. The problem is that the English spken language is vast and complex. For example, the same word might have different meanings in different circumstances. It this case the solution is to construct using text mining tools. 
@@ -128,17 +185,17 @@ For Finduber project the Lancaster stemmer algorithm is used, because it is need
 
 \subsection{Wikipedia Category Tree}
 
-Wikipedia is one of the most used and visited free-sources on the Internet. Until 2004, Wikipedia Fundation did not have a dedicted system for organizing articles. The only structure was contained in the direct links between the articles without any tols to organize them further.\cite{wikicategory} Later on in June, the Wikipedia added a feature designed to this purpose -- category pages. Through the use of category pages, it became possible to assign articles to categories and to link the these categories among themselves. Using this feature it can be created a category tree for every word that exist in wikipedia dictionary. The entire structure of organization of page hierarchy is show in the Figure \ref{category-tree-wiki}. 
+Wikipedia is one of the most used and visited free-sources on the Internet. Until 2004, Wikipedia Fundation did not have a dedicted system for organizing articles. The only structure was contained in the direct links between the articles without any tools to organize them further.\cite{wikicategory} Later on in June, the Wikipedia added a feature designed to this purpose -- category pages. Through the use of category pages, it became possible to assign articles to categories and to link the these categories among themselves. Using this feature it can be created a category tree for every word that exist in wikipedia dictionary. The entire structure of organization of page hierarchy is show in the Figure \ref{category-tree-wiki}. 
 
 \begin{figure}[!ht]
 \centering
 \includegraphics[width=15cm]{categorytreewiki}
-\caption{Illustration of Wikipedia’s Organization of Different Pages}\label{category-tree-wiki}
+\caption{Illustration of Wikipedia’s Organization of Different Pages}\label{category-tree-wiki}, \cite{wikicategory}.
 \end{figure}
 
 These structure is quite complex, but it is the suitable approach to be implemented in order to create taxonomy databases. For Finduber project only categories will be extracte, without articles and other special pages. These additional vertices are subject for future improvement of the project. To be able to extract these information from the wikipedia web page, wikipedia API is used.
 
-\textbf{Wikipedia API} is a strong web service, that allows developers to access, search and integrate Wikipedia content into custom web applications or for information storage. This API, that works over HTTP and returns data in a variety of different formats, including XML, is freely available to the programming public and makes it possible to create all kinds of custom web applications powered by Wikipedia's huge content database. \cite{wikipediAPI} Details about how it is implemented and how to fetch data from it are described in Chapter 3.
+\textbf{Wikipedia API} is a strong web service, that allows developers to access, search and integrate Wikipedia content into custom web applications or for information storage. This API, that works over HTTP and returns data in a variety of different formats, including XML, is freely available to the programming public and makes it possible to create all kinds of custom web applications powered by Wikipedia's huge content database. Details about how it is implemented and how to fetch data from it are described in Chapter 3.
 
 \subsection{Big Data}
 
@@ -270,6 +327,8 @@ B-tree is a self-balancing tree data structure that keeps data sorteed and allow
 In general it's a good practice to add an index for primary key in database tables. Since the number of youtube users is huge, the database tables will have a large number of rows. That is why it is need of an index, thus the lookup will take place in the index instead of sequentially scan the tables for the matching rows. Luckily, PostgreSQL automatically creates an index for primary keys to enforce uniqueness. Thus, it is not necessary to create an index explicitly for primary key columns. An example is shown in listing \ref{primarykey}. 
 
 \lstinputlisting [language=Ruby, caption={Primary Key Index in Rails}, label=primarykey]{../src/primary_key.rb}
+
+\newpage
 
 This creates a primary key index using the B-tree type to index the id column. In postgres table description it will look like: 
 
