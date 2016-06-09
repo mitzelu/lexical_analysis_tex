@@ -3,9 +3,9 @@
 
 \subsection{Problem Definition}
 
-Nowadays social media become an important marketing tool. Beside a big network where everyone can share information and express their thoughts, social media channels represent a good place for advertising different types of products and services. Moreover, people started using social media as a source of helping each others by publishing different advices about how to dress up, how to apply make up and what type of products are good. That is why video blogs that are posting on Youtube are very popular. According to Research Now, 84 \% of people have purchased products based on their descriptions in blogs.\cite{cyber} The percentage is very high, therefore companies are very interested in influential bloggers who can advise their products. 
+Nowadays social media becomes an important marketing tool. Beside a big network where everyone can share information and express their thoughts, social media channels represent a good place for advertising different types of products and services. Moreover, people started using social media as a source of helping each others by publishing different advices about how to dress up, how to apply make up and what type of products are good. That is why video blogs that are posting on Youtube are very popular. According to Research Now, 84 \% of people have purchased products based on their descriptions in blogs, \cite{cyber}. The percentage is very high, therefore companies are very interested in influential bloggers who can advise their products. 
 
-The problem acquires when stakeholders start researching the influential bloggers. Since the number of Youtube users is huge and it is in permanent growth the researching task is supposed to take a long time and not always to give desired results. Finduber is meant to resolve this problem using a search engine based on lexical analysis process. 
+The problem appears when stakeholders start researching the influential bloggers. Since the number of Youtube users is huge and it is in permanent growth the researching task is supposed to take a long time and not always to give desired results. Finduber is meant to resolve this problem using a search engine based on lexical analysis process. 
 
 \subsection{Market Analysis}
 
@@ -98,9 +98,9 @@ The basic classification task has a number of interesting variants. For example,
 
 Examples of classfication problems can be: text categorization, oprical character recognition, spoken language understanding, bioinformatics and others. The most known algorithms used in classification ptoblem are Naive Bayes classifier and Kernel estimation.
 
-The Naive Bayesian Classification represents a supervised learning method as well as a statistical method for classification. Assumes an underlying probabilistic model and it allows us to capture uncertainty about the model in a principled way by determining probabilities of the outcomes, \cite{bayesian} The main disadvantage of the algorithm is that it needs a lof of labeled data in order to have a high accuracy. Usually researches are providing sets of labeled data for some purpose, for example a set of test corpus that is used to classify a review as negative or positive. Obviously, there are no available sets of labeled data suitable for Finduber problem. That is why the Naive Bayesian classification is not the best solution in our case. 
+The Naive Bayesian Classification represents a supervised learning method as well as a statistical method for classification. Assumes an underlying probabilistic model and it allows us to capture uncertainty about the model in a principled way by determining probabilities of the outcomes, \cite{bayesian}. The main disadvantage of the algorithm is that it needs a lof of labeled data in order to have a high accuracy. Usually researches are providing sets of labeled data for some purpose, for example a set of test corpus that is used to classify a review as negative or positive. Obviously, there are no available sets of labeled data suitable for Finduber problem. That is why the Naive Bayesian classification is not the best solution in our case. 
 
-Kernel estimation is represented by k-Nearest Neighbor algorithm, that uses the local neighborhood to obtain a prediction. The K memorized examples more similar to the one that is being classified are retrieved. Since it has a high accuracy rate (with K-nn 1 Euclidean distance the accuracy is up to 96 \%) the algorithm has many drawbacks. First, it is computationally expensive to find the k nearest neighbours when the dataset is very large. Also, the model can not be interpreted (there is no description of the learned concepts), \cite{k-neighbor}
+Kernel estimation is represented by k-Nearest Neighbor algorithm, that uses the local neighborhood to obtain a prediction. The K memorized examples more similar to the one that is being classified are retrieved. Since it has a high accuracy rate (with K-nn 1 Euclidean distance the accuracy is up to 96 \%) the algorithm has many drawbacks. First, it is computationally expensive to find the k nearest neighbours when the dataset is very large. Also, the model can not be interpreted (there is no description of the learned concepts), \cite{k-neighbor}.
 
 \textbf{Clustering} is a process of partitioning a set of data (or objects) into a set of meaningful sub-classes, called clusters. The quality of a clustering result also depends on both the similarity measure used by the method and its implementation. The quality of a clustering method is also measured by its ability to discover some or all of the hidden patterns. Clustering has wide applications in
 
@@ -124,7 +124,7 @@ Clustering algorithms are of two types, depending on problem that solve. First t
 
 Lexical analysis is defined as process of taking an input string of characters and producing a sequence of symbols called token, that may be handled more easily by a parser. Finduber project works with database records that consists of chunks of text. In general, big chunks of text does not represent a big value. The problem is that the English spken language is vast and complex. For example, the same word might have different meanings in different circumstances. It this case the solution is to construct using text mining tools. 
 
-Text mining is the process of extracting the useful information from the textual data. It is a research area that tries to discover knowledge from unstructured texts. Comapred to data mining tools, that are designed to handle structured data, text mining works with unstructured or semi-structured data sets such as emails, HTML files and full documents.\cite{survey} In Finduber project the unstructured data refers to raw data extracted from social media content,such as chanel description. Text mining together with lexical analysis tries to solve the issues that occur in the area of data mining, information extraction, machine learning and natural language processing. 
+Text mining is the process of extracting the useful information from the textual data. It is a research area that tries to discover knowledge from unstructured texts. Comapred to data mining tools, that are designed to handle structured data, text mining works with unstructured or semi-structured data sets such as emails, HTML files and full documents, \cite{survey}. In Finduber project the unstructured data refers to raw data extracted from social media content,such as chanel description. Text mining together with lexical analysis tries to solve the issues that occur in the area of data mining, information extraction, machine learning and natural language processing. 
 
 \subsubsection{Information Extraction}
 
@@ -148,7 +148,7 @@ NLP is an area of application and research that explores how computers can be us
 
 \textbf{Tokenization} represents the process of breaking a string into words, phrases or other meaningful elemnts that are called tokens. The list of tokens becomes input for further processing. Tipically, segmentation occurs at the word level. Often a tokenizer relies on simple heuristics. Tokens are usually separated by white spaces. 
 
-\textbf{Stop words eliminations} process is meant to clean the data for insigificant words. Stop words are a division of natural language. The main motive that stop-words should be removed is that they make the text look heavier and less important for analysts. The most common words in text documents are articles, pro-nouns and prepositions. Some example of stop words are: the, in, a, an, etc. Stop words are removed from documents to reduce the dimensinality of term space and because they are not treated as keywords in text mining applications. \cite{sufix}
+\textbf{Stop words eliminations} process is meant to clean the data for insigificant words. Stop words are a division of natural language. The main motive that stop-words should be removed is that they make the text look heavier and less important for analysts. The most common words in text documents are articles, pro-nouns and prepositions. Some example of stop words are: the, in, a, an, etc. Stop words are removed from documents to reduce the dimensinality of term space and because they are not treated as keywords in text mining applications, \cite{sufix}.
 
 There are three methods that can be implemented to remove stop words. 
 \begin{itemize}
@@ -157,12 +157,12 @@ There are three methods that can be implemented to remove stop words.
 
 \item[--]{Methods based on Zipf's Law (Z-Methods):} Additionally to the classic stop list, it uses three stop word creation methods moved by Zipf's law, including: removing most frequent words (TF-High) and removing words that occur once, i.e. singleton words (TF1). It also consider removing words with low inverse document frequency (IDF). This method is used mostly on document analysis, rather that text.
 
-\item[--]{The Mutual Information Method (MI):} A supervised method that works by computing the mutual information between a given term and a document class (e.g., positive, negative), providing a suggestion of how much information the term can tell about a given class. Low mutual information suggests that the term has a low discrimination power and consequently it should be removed.\cite{MI}
+\item[--]{The Mutual Information Method (MI):} A supervised method that works by computing the mutual information between a given term and a document class (e.g., positive, negative), providing a suggestion of how much information the term can tell about a given class. Low mutual information suggests that the term has a low discrimination power and consequently it should be removed, \cite{MI}.
 
 \end{itemize}
 For Finduber project the first method is more suitable, because it has to remove stop words from the text not from the documents.
 
-\textbf{Steaming} is used to identify the root/stem of a word. For example, the words connect, connected, connecting, connections all can be stemmed to the word ``connec". \cite{stemming} The main goal of this method is to remove various suffixes, to reduce number of words and to have accurately matchin stems. There are two points that should be considered while using a stemmer:
+\textbf{Steaming} is used to identify the root/stem of a word. For example, the words connect, connected, connecting, connections all can be stemmed to the word ``connec", \cite{stemming}. The main goal of this method is to remove various suffixes, to reduce number of words and to have accurately matchin stems. There are two points that should be considered while using a stemmer:
 
 \begin{itemize}
 \item[--] Words that do not have the same meaning should be kept separate.
@@ -171,7 +171,7 @@ For Finduber project the first method is more suitable, because it has to remove
 
 Usually, stemming algorithms can be classified into three groups: truncating, statistical and mixed methods. Each method has it way of finding the stems of the word variants. After a deep analysis of all method, the first one turns out to be the most efficient for the Finduber project. 
 
-\textbf{Truncating Methods} are related to removing the sufixes or prefixes, i.e. affices of a word. One of the most basic stemmer is the Truncate (n) stemmer. It truncates a word at the nth symbol, thus it keeps n letter and removes the rest. Words shorter that n are kept as it is. Another approach is S-stemmer -- an algorithm conflating singular and plural forms of English nouns. It removes suffixes in plurals so as to convert them to the singular forms. \cite{truncat-stemm}
+\textbf{Truncating Methods} are related to removing the sufixes or prefixes, i.e. affices of a word. One of the most basic stemmer is the Truncate (n) stemmer. It truncates a word at the nth symbol, thus it keeps n letter and removes the rest. Words shorter that n are kept as it is. Another approach is S-stemmer -- an algorithm conflating singular and plural forms of English nouns. It removes suffixes in plurals so as to convert them to the singular forms, \cite{truncat-stemm}.
 
 Most popular stemming algorithms used now are: Porter Stemmer and Lancaster Stemmer.
 
@@ -185,7 +185,7 @@ For Finduber project the Lancaster stemmer algorithm is used, because it is need
 
 \subsection{Wikipedia Category Tree}
 
-Wikipedia is one of the most used and visited free-sources on the Internet. Until 2004, Wikipedia Fundation did not have a dedicted system for organizing articles. The only structure was contained in the direct links between the articles without any tools to organize them further.\cite{wikicategory} Later on in June, the Wikipedia added a feature designed to this purpose -- category pages. Through the use of category pages, it became possible to assign articles to categories and to link the these categories among themselves. Using this feature it can be created a category tree for every word that exist in wikipedia dictionary. The entire structure of organization of page hierarchy is show in the Figure \ref{category-tree-wiki}. 
+Wikipedia is one of the most used and visited free-sources on the Internet. Until 2004, Wikipedia Fundation did not have a dedicted system for organizing articles. The only structure was contained in the direct links between the articles without any tools to organize them further, \cite{wikicategory}. Later on in June, the Wikipedia added a feature designed to this purpose -- category pages. Through the use of category pages, it became possible to assign articles to categories and to link the these categories among themselves. Using this feature it can be created a category tree for every word that exist in wikipedia dictionary. The entire structure of organization of page hierarchy is show in the Figure \ref{category-tree-wiki}. 
 
 \begin{figure}[!ht]
 \centering
@@ -201,19 +201,19 @@ These structure is quite complex, but it is the suitable approach to be implemen
 
 Finduber project deals with biga data analysis and storage. Because the data from the database with youtube users represents an unstructured data and it size is over four gigabytes. In these subsection is defined the term of big data and how it is relate to social media, are analyses technologies used for big data analysis and efficient methods of data storage. 
 
-Every day people around the world post 400 million tweets on Twitter, add 350 million photos to Facebook and view 4 billion videos on YouTube.\cite{digitalInfo} Every 60 seconds on Facebook are posted 510 comments and 293,000 statuses are updated.\cite{zephoria} This has prompted the development of new technical and methodological approache to capture, process and analyse large and complex data, called \textbf{Big Data}. 
+Every day people around the world post 400 million tweets on Twitter, add 350 million photos to Facebook and view 4 billion videos on YouTube, \cite{digitalInfo}. Every 60 seconds on Facebook are posted 510 comments and 293,000 statuses are updated, \cite{zephoria}. This has prompted the development of new technical and methodological approache to capture, process and analyse large and complex data, called \textbf{Big Data}. 
 
-A 2011 paper by the McKinsey Global Institute describes big data thus: ``Big data refers to datasets whose size is beyond the ability of typical database software tools to capture, store, manage, and analyze."\cite{bigdata} 
+A 2011 paper by the McKinsey Global Institute describes big data thus: ``Big data refers to datasets whose size is beyond the ability of typical database software tools to capture, store, manage, and analyze", \cite{bigdata}. 
 
-Big data aprroaches to analysing social media data can increase undertanding of how people think and act. Companies can use the information obtained to improve decision-marking, target services and products more effectively and to try to influence users' decisions and behaviours in the future.\cite{POSTNOTE460}
+Big data aprroaches to analysing social media data can increase undertanding of how people think and act. Companies can use the information obtained to improve decision-marking, target services and products more effectively and to try to influence users' decisions and behaviours in the future, \cite{POSTNOTE460}.
 
-The rate of unstructured data production on social media makes it difficult to analyse and store it using traditional methods. Traditional methods of management system and analytics systems are based on the relational database management system (RDBMS) and can only be applied to structured data.\cite{bdtech} Due to this problem, research community has proposed some solutions that could storage and analyse big data, these solutions and technologies are described in the next subsections.
+The rate of unstructured data production on social media makes it difficult to analyse and store it using traditional methods. Traditional methods of management system and analytics systems are based on the relational database management system (RDBMS) and can only be applied to structured data, \cite{bdtech}. Due to this problem, research community has proposed some solutions that could storage and analyse big data, these solutions and technologies are described in the next subsections.
 
 \subsubsection{Hadoop and MapReduce}
 
 One of the fundamental technologies related to big data is \textbf{Hadoop}, that forms a powerful big data systematic solution through data storage, data processing, runing applications on clusters and integration of other modules. 
 
-It was initially developed by Doug Cutting and Mike Cafarella as an open-source web search ingine called Nutch. Its purpose was to return web search results faster by distributing data and calculations across different computers so multiple tasks could be acccomplished simultaneously. Later the project was devided - the web crawler part remained as Nutch and the distributed computing and processig part became Hadoop.\cite{sas} Today Hadoop is managed and maintained by the Apache Software Foundation (ASF) and is widely used by big Internet enterprises like Facebook, Yahoo. 
+It was initially developed by Doug Cutting and Mike Cafarella as an open-source web search ingine called Nutch. Its purpose was to return web search results faster by distributing data and calculations across different computers so multiple tasks could be acccomplished simultaneously. Later the project was devided - the web crawler part remained as Nutch and the distributed computing and processig part became Hadoop, \cite{sas}. Today Hadoop is managed and maintained by the Apache Software Foundation (ASF) and is widely used by big Internet enterprises like Facebook, Yahoo. 
 
 Hadoop consists of two parts: HDFS (Hadoop Distributed File System) and MR framework (MapReduce Framework). HDFS stores data from different external sources fed into a Hadoop cluster. A HDFS cluster includes a single NameNode for managing the metadata of the file system and DataNodes for storing actual data.The MR framework consist of one JobTraker and and multiple TaskTraker nodes.
 
@@ -225,13 +225,13 @@ The described architecture of Hadoop is shown in the \mbox{Figure \ref{hdfs_arch
 \caption{Hadoop Architecture\cite{hdfsFigure}}\label{hdfs_arch}
 \end{figure}
 
-During injection, the data is broken down into smaller chunks. The master node holds all the metadata information regarding the data split up and this enables it to recreate the whole data set using different slave machines.\cite{blog} The client submits a Job to the master node and it in turn assigns the Job to the slave nodes. For assigning the tasks to the salve nodes is respnsible the Jobtracker process that runs on the master node. The task is not run on all the data that is hold on the salve node but only on the data slice that has been specified by the Master Node. The slaves run TaskTracker, HDFS to store data, and map and reduce functions for data computation.\cite{rosebt} If one of the data replicas on HDFS is corrupdet, JobTracker, will look for an alternate slave node that contains the same data. 
+During injection, the data is broken down into smaller chunks. The master node holds all the metadata information regarding the data split up and this enables it to recreate the whole data set using different slave machines, \cite{blog}. The client submits a Job to the master node and it in turn assigns the Job to the slave nodes. For assigning the tasks to the salve nodes is respnsible the Jobtracker process that runs on the master node. The task is not run on all the data that is hold on the salve node but only on the data slice that has been specified by the Master Node. The slaves run TaskTracker, HDFS to store data, and map and reduce functions for data computation, \cite{rosebt}. If one of the data replicas on HDFS is corrupdet, JobTracker, will look for an alternate slave node that contains the same data. 
 
 MR in complement to a RDBMS is a good fit for problems that need to analyze the whole dataset in a batch fashion and unstructured data. Because, in the case of MR framework, data is partitioned the functional primitives (map and reduce) cand work in parallel on separate partitions. More differences between MR and RDBSMS are shown in \mbox {Table \ref{table:mrdiff}}:
 
 \begin{table}[!ht]
 \begin{center}
-\caption{RDBMS compared to MapReduce \cite{tableHadoop}}
+\caption{RDBMS compared to MapReduce as specified in \cite{tableHadoop}}
 \begin{tabular}{| c | c | c |}
 \hline
   & \textbf{Traditional RDBMS} & \textbf{MapReduce} \\
@@ -259,13 +259,13 @@ MR in complement to a RDBMS is a good fit for problems that need to analyze the 
 The main advantages of Hadoop are:
 \begin{itemize}
 
- \item \textit{High Cost Efficiency} - since large-sclae parallel computing to commercial servers is applied, the cost per terabyte required for storage capacityis greatly reduced.
+ \item High Cost Efficiency: since large-sclae parallel computing to commercial servers is applied, the cost per terabyte required for storage capacityis greatly reduced.
 
- \item \textit{Strong Flexibility} - handle many kinds of data from various sources.
+ \item Strong Flexibility: handle many kinds of data from various sources.
 
- \item \textit{Expandability} - expansion or shrinkage of hardware infrastructure without changing data format.
+ \item Expandability: expansion or shrinkage of hardware infrastructure without changing data format.
 
- \item \textit{High Fault-Tolerance} - recover data and correct computing errors caused by node failures.
+ \item High Fault-Tolerance: recover data and correct computing errors caused by node failures.
 
 \end{itemize}
 
@@ -273,15 +273,15 @@ Having the Hadoop technology that allows to store and analyse big data, the main
 
 \subsubsection{Big Data Storage}
 
-Data storage is related to the storage and managemet of large-sclae datasets, while achieving reliability and availability. Storage systems shall be equipped with many interfaces, rapid query, or other type of programming models for analysing of stored data and interaction with it. Traditionally, data storage equipment manages, looks up and analyzes data with structured RDBMSs. But since the volume of the big data is measured in terabytes and petabytes makes traditional storage equipment and management modes inadequate. Therefore, there is a compelling need for research on data storage.\cite{bdtech}
+Data storage is related to the storage and managemet of large-sclae datasets, while achieving reliability and availability. Storage systems shall be equipped with many interfaces, rapid query, or other type of programming models for analysing of stored data and interaction with it. Traditionally, data storage equipment manages, looks up and analyzes data with structured RDBMSs. But since the volume of the big data is measured in terabytes and petabytes makes traditional storage equipment and management modes inadequate. Therefore, there is a compelling need for research on data storage, \cite{bdtech}.
 
-In order develop a large scale distributed storage system for  efficient data processing and analysis the following factors should be taken in consideration:\cite{CAP}
+In order develop a large scale distributed storage system for  efficient data processing and analysis the following factors should be taken in consideration as sugested in \cite{CAP}:
 
 \begin{itemize}
 
-\item \textit{Consistency} - all nodes see the same data at the same time.
-\item \textit{Availability} - a guarantee that every request receives a response about whether it succeeded or failed.
-\item \textit{Partition tolerance} - the system continues to operate despite arbitrary partitioning due to network failures.
+\item Consistency: all nodes see the same data at the same time.
+\item Availability: a guarantee that every request receives a response about whether it succeeded or failed.
+\item Partition tolerance: the system continues to operate despite arbitrary partitioning due to network failures.
 
 \end{itemize}
 
@@ -292,7 +292,7 @@ In 2000 Eric Brewer proposed a CAP theory, that stated that in a distributed sys
 \textbf{CP} systems ensure partition tolerance, in such a way the system can be expanded to become a distributed one. To ensure a level of partition tolerance system maintain several copies of the same data. The copies are completely identical, thus ensuring cosistency. Because CP systems do not have the third factor, availability, to guarantee a response to every request, system will wait for a response from the partitioned node that could reuslt in a timeout error. CP systems are chosen when the amount of data is not so big. Examples of CP systems are: BigTable and Hbase.
 
 \textbf{AP} systems ensure availability and partition tolerance. The consistency factor is missing, therefore AP systems are applied to the scenarios with frequent req
-uests but not very high requirements on accurancy. Availability is also an option when the system needs to continue to function in spite of external errors\cite{AP} for example in online Social Network Services. Two popular AP systems are Dynamo and Cassandra. 
+uests but not very high requirements on accurancy. Availability is also an option when the system needs to continue to function in spite of external errors, \cite{AP} for example in online Social Network Services. Two popular AP systems are Dynamo and Cassandra. 
 
 \textbf{Database Technology} is also used to store data. Every complex system requires a database technology to handle datasets at different scales. It is apparent that traditional relational databases cannot meet the challenges on categories and scales brought about by big data. In this context NoSQL databases are becoming more used and popular for big data storage. Compared with relational databases, NoSQL ones feature flexible models, simple API, eventual consistency and support of large volume data. There are three main NoSQL databases:
  
@@ -310,19 +310,19 @@ Key-value stores are used in massive multi-player on-line gaming to manage each 
 
 \textbf{Document-oriented databases} can support more complex data forms, compared with key-values database. Moreover, is no need to conduct mode migrations, because documents do not follow strict models. The application logic is much easier to write for document-oriented databases, since it is not need to translate between objects in application and SQL queries, object model can just be turned directly into a document.
 
-Document databases have very powerful query engines and indexing features that make it easy and fast to execute many different optimized queries. \cite{mongodb-adv} Three important representatives of document stoarge systems are: MongoDB, SimpleDB and Couch DB. 
+Document databases have very powerful query engines and indexing features that make it easy and fast to execute many different optimized queries, \cite{mongodb-adv}. Three important representatives of document stoarge systems are: MongoDB, SimpleDB and Couch DB. 
 
 As was mentioned at the beginning of the chapter, the Finduber project uses two databases. The youtube database uses PostgreSQL to store the data. For taxonomy database it is choosen the document-based model -- MongoDB. This model is the most optimal choise, because it supports documents hierarchy and this is exactly what is need for storing a category tree.
 
 \subsection{PostgreSQL Indexing in Rails}
 
-Postgres, is an object-relational database management system (ORDBMS) with an emphasis on extensibility and standards-compliance. Although is not a NoSQL database, it has a long track record of use in data warehouse. For a decade before Hadoop launched, PostgreSQL was the only pure open-source option for large data volumes and complex analytics. One thing relational database do a lot of is sorting data. The bigger the database size, the more the performance of those sorts becomes the dominating factor in overall response time.\cite{whypostgres} To solve this problem, newer versions of PostgreSQL supports indexing. 
+Postgres, is an object-relational database management system (ORDBMS) with an emphasis on extensibility and standards-compliance. Although is not a NoSQL database, it has a long track record of use in data warehouse. For a decade before Hadoop launched, PostgreSQL was the only pure open-source option for large data volumes and complex analytics. One thing relational database do a lot of is sorting data. The bigger the database size, the more the performance of those sorts becomes the dominating factor in overall response time, \cite{whypostgres}. To solve this problem, newer versions of PostgreSQL supports indexing. 
 
 Indexes are a common way to enhance database performance. An index allows the database server to find and retreive specific rows much faster. But they also add overhead to the database system as a whole, so they should be used sensibly.
 
 PostgreSQL includes four index types: B-tree, Hash, GiST and GIN, each of them using a different algorithm that is best suited to different types of queries. B-tree index type is the most commonly used index type for most use cases, that is way it will be used in Finduber project as well. The main drawback of hash indexes is that they cannot be recovered after a crash of power loss. 
 
-B-tree is a self-balancing tree data structure that keeps data sorteed and allows searches, insertions, deletions and sequential access in logarithmic time. In particular, the PostgreSQL query planner will consider using a B-tree index whenever an indexed column is involved in a comparison using one of these operators: \textless, <=, =, >= and \textgreater. Constructs equivalent to combinations of these operators, such as BETWEEN and IN, can also be implemented with a B-tree index search. Also, an IS NULL or IS NOT NULL condition on an index column can be used with a B-tree index.\cite{postgresweb} Using B-tree indexes can be created primary keys, foreign keys, uniques indexes and sorted indexes. 
+B-tree is a self-balancing tree data structure that keeps data sorteed and allows searches, insertions, deletions and sequential access in logarithmic time. In particular, the PostgreSQL query planner will consider using a B-tree index whenever an indexed column is involved in a comparison using one of these operators: \textless, $\leq$, =, $\geq$ and \textgreater. Constructs equivalent to combinations of these operators, such as BETWEEN and IN, can also be implemented with a B-tree index search. Also, an IS NULL or IS NOT NULL condition on an index column can be used with a B-tree index, \cite{postgresweb}. Using B-tree indexes can be created primary keys, foreign keys, uniques indexes and sorted indexes. 
 
 In general it's a good practice to add an index for primary key in database tables. Since the number of youtube users is huge, the database tables will have a large number of rows. That is why it is need of an index, thus the lookup will take place in the index instead of sequentially scan the tables for the matching rows. Luckily, PostgreSQL automatically creates an index for primary keys to enforce uniqueness. Thus, it is not necessary to create an index explicitly for primary key columns. An example is shown in listing \ref{primarykey}. 
 

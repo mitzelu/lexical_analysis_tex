@@ -1,4 +1,9 @@
+\addtocontents{toc}{\protect\newpage}
+
 \section{Implementation Part}
+
+\pagenumbering{arabic}
+\setcounter{page}{39}
 \phantomsection
 In the previous chapters the concepts and architecture of Finduber project were discussed. What follows now is the description of the implementation part. It will be analysed and described every step of the implementation process, together with the used technologies and code snippets. 
 
@@ -189,18 +194,20 @@ By default, Flask does not include a database abstraction layer, form validation
 
 \lstinputlisting [language=Python, caption={SQLAlchemy Configuration}, label=alchemyDB]{../src/sqlalchemy.py}
 
-To create a 
+In order to create a web page it is only necessary to create a standard python function. The listing \ref{approute} show how is created the web page index of Finduber project. It is not listed the entire code of the function, but only the declaration.
 
+\lstinputlisting [language=Python, caption={Index Page in Flask}, label=approute]{../src/index.py}
+
+The route () decorator tells Flask what URL should trigger the function. 
 
 After pressing the search button a list of 10 influencial bloggers sorted by number of views is returned. 
-
 
 In Figure \ref{web_app} is an example of user search. As a produs is taken a soap and the 10 influencial bloggers that are received are from beauty category.
 
 \begin{figure}[!ht]
 \centering
 \includegraphics[width=15cm]{web}
-\caption{Hadoop Architecture}\label{web_app}
+\caption{Application Results}\label{web_app}
 \end{figure}
 
 

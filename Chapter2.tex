@@ -1,10 +1,14 @@
 \section{Software Design}
+
+\pagenumbering{arabic}
+\setcounter{page}{30}
+
 \phantomsection
 \subsection{UML Modeling}
 
 In this chapter are specified and documented the artifacts of Finduber system using UML diagrams. UML can be described as a general purpose visual modeling language to visualize, construct, specify and document software system. The diagrams are aim to help developers, business users and anybody interested to understand the system. To model a system the most important aspect is to capture the dynamic behaviour. There are five diagrams in UML available to model it: use case, sequence, state and activity diagram. However, class and deployment diagram are also important to examine. They represent physical and conceptual elements of the system that are present in Finduber platform as nodes and classes.
 
-\subsection{Use Case Diagram}
+\subsection{System's Requirements}
 
 Use case diagrams are used to gather the requirements of the Finduber system including internal and external agets known as actors. There is only one actor -- user -- that interacts with the system. The system functionalities are captured in use cases as shown in the Figure \ref{usecase_uml}.
 
@@ -20,7 +24,7 @@ The use case diagrams specify the events of the system and their flows, but neve
 
 Since it uses objects to show the messages flow and objects are derived from classes, the sequence diagrams are dependent upon class diagrams. Thus, first will be shown the class diagrams and after that the sequence ones. 
 
-\subsection{Class Diagrams}
+\subsection{Static View of the System}
 
 The class diagrams help us to model and analyse the static views of the application. Through them the responsabilities of the system are described. Each class entity has its own methods and attributes. In the Figure \ref{classCreate_uml} are shown the classes responsabile for database creation. 
 
@@ -52,7 +56,7 @@ A more complex class diagram is build for MapReduce framework used for word freq
 
 Now, when all the main classes for Finduber system are documented the sequence diagrams can be created.
 
-\subsection{Sequence Diagrams}
+\subsection{Objects Interaction of the System}
 
 The sequence diagrams are used primarily to show the interactions between objects in the sequential order that those interactions occur. They also can be used as a requirements document to communicate requirements for a future system implementation. Sequence diagrams listed below are only for main processes of the running system at a particular moment. 
 
@@ -84,7 +88,7 @@ First, the search controller gets the user input. The next call is to Wikipedi-E
 
 Having the sequnce diagrams it can be easily seen how tasks are distributed between components, also to iddentify patterns of interaction that make it difficult to update the software.
 
-\subsection{Activity Diagram}
+\subsection{Dinamic Aspect of the System}
 
 Another important diagram that describes the dynamic aspects of the Finduber system is activity diagram. It shows the flow from one activity to another activity. For a better understanding of the described flow swimlanes are used. They group activities performed by the same thread as showm in Figure \ref{doc_uml}. 
 
@@ -101,7 +105,7 @@ MapReduce object gets the cleaned and tokenized data and starts the word frequne
 
 After MapReduce set of activities the data is ready to use in database categorization. Thus, the activity flow goes to PostgresDB object. Its main reponsability is to assign to each record a pre-defined category, based on words with the highest frequency index. 
 
-\subsection{State Machine Diagram}
+\subsection{Dynamic States of System's Objects}
 
 State diagram is one of the five UML diagrams used to model dynamic nature of a system. They define different states of an object during its lifetime. Statechart diagrams are very important for describing the states. States can be identified as the condition of objects when a particular event occurs. The diagram \ref{state_uml} represents the main state through which the word inputted by user goes. 
 
@@ -123,7 +127,7 @@ Comnning back to the client part of the application, in the Figure \ref{appstate
 
 As is seen all application states are mapped to a browser page. The entire process starts when the user open the application web page. After that the user is in a state where is able to input words for search. Next states are related to the further possibilities regarding obtained list of results. Three options are available: exit the page without getting in another state, click on a blogger from the list and view details about it and then exit or simply go to the Youtube page of the blogger.
 
-\subsection{Component Diagram}
+\subsection{Modelling Physical Aspects of the System}
 
 Another important part of the system architecture is to model physical aspects. In this case, the component diagram is used to shows the structure a software system. By thinking of your system as a collection of components with well-defined provided and required interfaces, you improve the separation between the components. This in turn makes the design easier to understand and easier to change when requirements change.
 
@@ -141,7 +145,7 @@ The second set of components are used for user interface application. PyMongo an
 
 Figure \ref{component_uml} gives only an overview of existing components, not the topology itself. That is why it is need to create a deployment diagram. 
 
-\subsection{Deployment Diagram}
+\subsection{System's Topology}
 
 The Deployment Diagram models the run-time configuration in a static view and visualizes the distribution of components in an application. It involves modeling the hardware configurations together with the software components that lived on.
 
