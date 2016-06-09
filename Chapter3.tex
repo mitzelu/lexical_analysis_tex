@@ -145,10 +145,63 @@ Now the last step is to update the database using this temporary table as specif
 
 \lstinputlisting [language=Python, caption={Update Database using Temporary Table}, label=updatetable]{../src/updatetemp.py}
 
+
+The results of database optimisation shown in the Table \ref{table:tf_results} are not as high as expected. It happened beacuse of text corpus. Only channel's title and description is not enought for analysis. Thus, a feature implementation of the project is to add video titles and video description. 
+
+\begin{table}[!ht]
+\begin{center}
+\caption{Result of term frequency algorithm}
+\renewcommand{\arraystretch}{2}
+\begin{tabular}{| c | >{\centering\arraybackslash}p{4cm} | }
+\hline
+\textbf{Category}& \textbf{Number of users} \\
+\hline
+Beauty & 2407 \\
+\hline
+Games & 77720 \\
+\hline
+Fashion & 554 \\
+\hline
+Food & 697 \\
+\hline
+Sports & 1263 \\
+\hline
+\hline
+\textbf{Total} & 8264 \\
+\hline
+\end{tabular}
+\label{table:tf_results}
+\vspace{-2.5em}
+\end{center}
+\end{table}
+
+
 \subsection{Web User Interface}
 
+Web user interface represents a simple web page that has a search box where user is required to type the product that is need to be promoted. Since the Finduber project uses multiple libraries of Python language it is a good practice to use an virtual environment for developimng the application.
+
+Virtualenv is a tool to create isolated Python environments. It solves the problem that appears when the same machine has an application that needs version one of a python library and another applicaion that requires version 2. If everything is installed into 
+/usr/lib/python2.7/site-packages, at a moment library one for first application can be upgraded to version two. This fact can break the application, becaus any changes in its libraries or the versions of its are hazardous. 
+
+Flask is used as a primary web framework, because it aims to keep to keep the core simple but extensible. Flask won’t make many decisions for the developer, such as what database to use. Those decisions that it does make, such as what templating engine to use, are easy to change. Everything else is up to the developer, so that Flask can be everything he needs and nothing he doesn not.
+
+By default, Flask does not include a database abstraction layer, form validation or anything else where different libraries already exist that can handle that. For Finduber project was used the library Flask-SQLAlchemy. It is an extension that adds support for SQLAlchemy to application. The library is easy to use and has many functionalities. To make the connection to the PostgreSQL databse it is required to set the database url and to add it to configuration file, as shown in listing \ref{alchemyDB}
+
+\lstinputlisting [language=Python, caption={SQLAlchemy Configuration}, label=alchemyDB]{../src/sqlalchemy.py}
+
+To create a 
 
 
+After pressing the search button a list of 10 influencial bloggers sorted by number of views is returned. 
+
+
+In Figure \ref{web_app} is an example of user search. As a produs is taken a soap and the 10 influencial bloggers that are received are from beauty category.
+
+\begin{figure}[!ht]
+\centering
+\includegraphics[width=15cm]{web}
+\caption{Hadoop Architecture}\label{web_app}
+\end{figure}
 
 
 
